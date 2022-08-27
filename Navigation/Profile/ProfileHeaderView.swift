@@ -10,10 +10,10 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     private let image: UIImageView = {
-        let photo = UIImageView(frame: CGRect(x: 16, y: 16, width: 120, height: 120))
+        let photo = UIImageView()
         photo.image = UIImage(named: "IMG_0037")
         photo.layer.cornerRadius = 60
-        
+        photo.translatesAutoresizingMaskIntoConstraints = false
         photo.layer.masksToBounds = true
         photo.layer.borderWidth = 3
         photo.layer.borderColor = UIColor.white.cgColor
@@ -37,9 +37,8 @@ class ProfileHeaderView: UIView {
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 4
+        button.layer.cornerRadius = 14
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
@@ -101,14 +100,19 @@ class ProfileHeaderView: UIView {
     
 func addConstraints(){
        NSLayoutConstraint.activate([
+        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+        image.heightAnchor.constraint(equalToConstant: 120),
+        image.widthAnchor.constraint(equalToConstant: 120),
+        
         label.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
         label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
         label.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
         
         button.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
         button.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-        button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         button.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
+        button.heightAnchor.constraint(equalToConstant: 50),
         
         statusLabel.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
         statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -54),
