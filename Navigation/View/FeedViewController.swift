@@ -6,11 +6,6 @@
 //
 
 import UIKit
-// создание структуры
-struct Post {
-    var title : String
-}
-
 
 class FeedViewController: UIViewController {
     // создание обьекта Post
@@ -25,7 +20,7 @@ class FeedViewController: UIViewController {
        
         override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.backgroundColor = .systemIndigo
         
         //хотел сделать закругление кнопки, но метод почему-то не работае:
         //button.layer.cornerRadius = 0.3 
