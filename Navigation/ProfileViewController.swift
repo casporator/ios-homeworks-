@@ -64,6 +64,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+       
         
         
         self.navigationItem.title = "Профиль"
@@ -71,6 +72,7 @@ class ProfileViewController: UIViewController {
         // MARK: добавляю кнопку справа нав бара (это так, для саморазвития)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "выход", style: .plain, target: self, action: #selector(pressExit))
     }
     
     private func setupGestures() {
@@ -84,6 +86,11 @@ class ProfileViewController: UIViewController {
     @objc private func forcedHidingKeyboard() {
         self.view.endEditing(true)
         print("keyboard is off")
+    }
+    
+    @objc func pressExit() {
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     
