@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
-    // Mark: делаю новую кнопку:
+    // MARK: делаю новую кнопку:
     
     let editButton: UIButton = {
         let button = UIButton()
@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .lightGray
-        self.title = "Профиль"
+       
         
         view.addSubview(profileView)
         view.addSubview(editButton)
@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController {
         print("тeст кнопки редактирования")
     }
     
-    // Mark: создаю "чёлку" навигационного бара
+    // MARK: создаю "чёлку" навигационного бара
     func navBarCustomization () {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemBackground
@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController {
         
         self.navigationItem.title = "Профиль"
         
-        // Mark: добавляю кнопку справа нав бара (это так, для саморазвития)
+        // MARK: добавляю кнопку справа нав бара (это так, для саморазвития)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
     }
