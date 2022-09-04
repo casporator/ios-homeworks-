@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .lightGray
        
@@ -72,6 +72,9 @@ class ProfileViewController: UIViewController {
         // MARK: добавляю кнопку справа нав бара (это так, для саморазвития)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
+        
+        //это не по заданию, но захотелось реализовать анлог и возврат на страницу регистрации, тут я столкнулся с интересными особенностями которые пришлось решать (вроде всё получилось и работает корректно)
+        //MARK: меняю левую кнопку
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "выход", style: .plain, target: self, action: #selector(pressExit))
     }
     
@@ -88,6 +91,7 @@ class ProfileViewController: UIViewController {
         print("keyboard is off")
     }
     
+    //MARK: таргет кнопки выход
     @objc func pressExit() {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)

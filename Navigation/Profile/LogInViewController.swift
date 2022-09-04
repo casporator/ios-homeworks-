@@ -98,6 +98,7 @@ class LoginViewController : UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true //при нажатии кнопки анлог в ProfileView и возврата обратно на LoginViewController появлялся таббар, поэтому тут я его принудительно скрываю
         
         addViews()
         addConstraints()
