@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    
     private let image: UIImageView = {
         let photo = UIImageView()
         photo.image = UIImage(named: "IMG_0037")
@@ -97,7 +98,7 @@ class ProfileHeaderView: UIView {
             statusText = text
         }
     }
-    
+   
 func addConstraints(){
        NSLayoutConstraint.activate([
         image.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),

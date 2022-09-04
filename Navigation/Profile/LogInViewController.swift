@@ -144,7 +144,6 @@ class LoginViewController : UIViewController {
     //MARK: Функция сокрытия клавиатуры
     @objc func didHideKeyboard(_ notification: Notification){
         self.forcedHidingKeyboard()
-        
     }
     @objc private func forcedHidingKeyboard() {
         self.view.endEditing(true)

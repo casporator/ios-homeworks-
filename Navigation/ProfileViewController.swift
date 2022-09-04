@@ -38,6 +38,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .lightGray
         self.title = "Профиль"
         
@@ -45,6 +46,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(editButton)
         navBarCustomization()
         addConstrains()
+        setupGestures()
     }
     
     
@@ -70,6 +72,20 @@ class ProfileViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
     }
+    
+    private func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func didHideKeyboard(_ notification: Notification){
+        self.forcedHidingKeyboard()
+    }
+    @objc private func forcedHidingKeyboard() {
+        self.view.endEditing(true)
+        print("keyboard is off")
+    }
+    
     
     func addConstrains(){
         NSLayoutConstraint.activate([
