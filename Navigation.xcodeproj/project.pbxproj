@@ -19,6 +19,7 @@
 		BBAB864328B3B7D400BB951A /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864228B3B7D400BB951A /* ProfileHeaderView.swift */; };
 		BBAB864728B4448100BB951A /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864628B4448100BB951A /* Struct.swift */; };
 		BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864928C3630C00BB951A /* LogInViewController.swift */; };
+		BBAFDED428C6A07500C4177C /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDED328C6A07500C4177C /* extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BBAB864228B3B7D400BB951A /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		BBAB864628B4448100BB951A /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
 		BBAB864928C3630C00BB951A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		BBAFDED328C6A07500C4177C /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				BB15977828AA704200BBA453 /* Assets.xcassets */,
 				BB15977A28AA704200BBA453 /* LaunchScreen.storyboard */,
 				BB15977D28AA704200BBA453 /* Info.plist */,
+				BBAFDED328C6A07500C4177C /* extension.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				BB15978A28ABDB9C00BBA453 /* InfoViewController.swift in Sources */,
 				BB15978628AA75F100BBA453 /* ProfileViewController.swift in Sources */,
 				BB15978428AA75DE00BBA453 /* FeedViewController.swift in Sources */,
+				BBAFDED428C6A07500C4177C /* extension.swift in Sources */,
 				BB15977228AA704200BBA453 /* SceneDelegate.swift in Sources */,
 				BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */,
 				BBAB864328B3B7D400BB951A /* ProfileHeaderView.swift in Sources */,
