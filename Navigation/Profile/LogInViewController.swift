@@ -6,15 +6,23 @@
 //
 
 import UIKit
+extension UIView {
+
+func toAutoLayout() {
+    translatesAutoresizingMaskIntoConstraints = false
+}
+
+func addSubviews(_ subviews: UIView...) {
+    subviews.forEach { addSubview($0) }
+}
+}
 
 class LoginViewController : UIViewController {
     
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(stackViewTextFields)
-        scrollView.addSubview(loginButton)
+        scrollView.toAutoLayout()
         
         return scrollView
     }()
@@ -24,7 +32,7 @@ class LoginViewController : UIViewController {
     private lazy var logoImageView: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
-        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.toAutoLayout()
         
         return logo
     }()
@@ -40,7 +48,7 @@ class LoginViewController : UIViewController {
         stackView.layer.cornerRadius = 10
         stackView.layer.borderWidth = 0.5
         stackView.layer.borderColor = UIColor.lightGray.cgColor
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         
         return stackView
         
@@ -54,7 +62,7 @@ class LoginViewController : UIViewController {
         email.font = UIFont(name: "system", size: 16.0)
         email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: email.frame.height))
         email.leftViewMode = .always
-        email.translatesAutoresizingMaskIntoConstraints = false
+        email.toAutoLayout()
         email.autocapitalizationType = .none
         email.layer.borderWidth = 0.5
         email.layer.borderColor = UIColor.lightGray.cgColor
@@ -70,7 +78,7 @@ class LoginViewController : UIViewController {
         password.font = UIFont(name: "system", size: 16.0)
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: password.frame.height))
         password.leftViewMode = .always
-        password.translatesAutoresizingMaskIntoConstraints = false
+        password.toAutoLayout()
         password.isSecureTextEntry = true //делаю скрытый ввод текста
         password.autocapitalizationType = .none
         password.layer.borderWidth = 0.5
@@ -86,19 +94,18 @@ class LoginViewController : UIViewController {
         login.setTitle("Log In", for: .normal)
         login.setTitleColor(UIColor.white, for: .normal)
         login.setTitleColor(UIColor.black, for: .highlighted)
-        login.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel.png")!)
+        login.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage())
         login.layer.cornerRadius = 10
-        login.translatesAutoresizingMaskIntoConstraints = false
+        login.toAutoLayout()
         login.addTarget(self, action: #selector(pressLogin), for: .touchUpInside)
         return login
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = true //при нажатии кнопки анлог в ProfileView и возврата обратно на LoginViewController появлялся таббар, поэтому тут я его принудительно скрываю
+        self.tabBarController?.tabBar.isHidden = true
         
         addViews()
         addConstraints()
@@ -108,6 +115,9 @@ class LoginViewController : UIViewController {
     // MARK: клавиатура
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(
             self,selector: #selector(self.didShowKeyboard(_:)),
@@ -163,6 +173,8 @@ class LoginViewController : UIViewController {
         scrollView.addSubview(logoImageView)
         stackViewTextFields.addArrangedSubview(emailTextField)
         stackViewTextFields.addArrangedSubview(passwordTextField)
+        scrollView.addSubview(stackViewTextFields)
+        scrollView.addSubview(loginButton)
         
     }
     

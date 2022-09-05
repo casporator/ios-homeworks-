@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController {
         
         //это не по заданию, но захотелось реализовать анлог и возврат на страницу регистрации, тут я столкнулся с интересными особенностями которые пришлось решать (вроде всё получилось и работает корректно)
         //MARK: меняю левую кнопку
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "выход", style: .plain, target: self, action: #selector(pressExit))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(pressExit))
     }
     
     private func setupGestures() {
@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController {
     //MARK: таргет кнопки выход
     @objc func pressExit() {
         let loginViewController = LoginViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     
