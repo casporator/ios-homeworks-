@@ -8,6 +8,6 @@
 import Foundation
 
 // создание структуры
-struct Post {
+struct HeadPost {
     var title : String
 }

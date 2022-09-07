@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     // Mark: создание обьекта Post
-    var postTitle = Post(title: "Пост")
+    var postTitle = HeadPost(title: "Пост")
     
         let button = UIButton()
         let secondButton = UIButton()
