@@ -5,131 +5,83 @@
 //  Created by Oleg Popov on 15.08.2022.
 //
 
-import UIKit
 
+import Foundation
+import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileView: UIView = {
-        let view = ProfileHeaderView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-  
-        return view
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped) // (.plain это для себя)
+        tableView.toAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "indentPostTableCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "indentDefaultTableCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        return tableView
     }()
-    
-    // MARK: делаю новую кнопку:
-    
-    let editButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Редактировать", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitleColor(UIColor.black, for: .highlighted)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 14
-        button.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
-       
-       return button
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = false
-        view.backgroundColor = .lightGray
-       
+
+        view.backgroundColor = .systemGray6
+        view.addSubview(tableView)
+        addConstraints()
+        tableView.reloadData()
         
-        view.addSubview(profileView)
-        view.addSubview(editButton)
-        navBarCustomization()
-        addConstrains()
-        setupGestures()
-    }
     
-    
-    @objc func pressButton() {
-        print("тeст кнопки редактирования")
-    }
-    
-    // MARK: создаю "чёлку" навигационного бара
-    func navBarCustomization () {
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemBackground
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-       
-        
-        
-        self.navigationItem.title = "Профиль"
-        
-        // MARK: добавляю кнопку справа нав бара (это так, для саморазвития)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
-        self.navigationItem.rightBarButtonItem?.tintColor = .black
-        
-        //это не по заданию, но захотелось реализовать анлог и возврат на страницу регистрации, тут я столкнулся с интересными особенностями которые пришлось решать (вроде всё получилось и работает корректно)
-        //MARK: меняю левую кнопку
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(pressExit))
-    }
-    
-    private func setupGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func didHideKeyboard(_ notification: Notification){
-        self.forcedHidingKeyboard()
-    }
-    @objc private func forcedHidingKeyboard() {
-        self.view.endEditing(true)
-        print("keyboard is off")
-    }
-    
-    //MARK: таргет кнопки выход
-    @objc func pressExit() {
-        let loginViewController = LoginViewController()
-        navigationController?.popViewController(animated: true)
-    }
-    
-    
-    func addConstrains(){
+    func addConstraints(){
         NSLayoutConstraint.activate([
-            
-        profileView.topAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.topAnchor),
-        profileView.leftAnchor.constraint(equalTo: super.view.leftAnchor),
-        profileView.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
-        profileView.heightAnchor.constraint(equalToConstant: 220),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), //тут по уму я хотел прикрепить к bottomAncchor, но тогда почему-то белый экран. не могу понять в чём причина
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+  }
+}
 
-        editButton.leftAnchor.constraint(equalTo: super.view.leftAnchor),
-        editButton.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
-        editButton.bottomAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.bottomAnchor),
-        editButton.heightAnchor.constraint(equalToConstant: 50),
-                 ])
-
+extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
+    
+    //MARK: передаю ProfileHeader в первую секцию
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return ProfileHeaderView()
+        }
+        return nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 //я так понимаю если число секций = 1, то можно не прописывать?
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "indentPostTableCell", for: indexPath) as? PostTableViewCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "indentDefaultTableCell", for: indexPath)
+            return cell
+        }
+        
+        let PostModel = PostTableViewCell.ViewModel(
+            autor: posts[indexPath.row].autor,
+            descriptionText: posts[indexPath.row].description,
+            likes: "Likes: \(posts[indexPath.row].likes)",
+            views: "Views: \(posts[indexPath.row].views)",
+            image: posts[indexPath.row].image
+        )
+        cell.setup(with: PostModel)
+        
+        return cell
     }
 }
-    
 
 
 
-
-
-/* в методе viewWillLayoutSubviews() задайте ему frame, равный frame корневого view
- 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
- 
-     profileView.frame = CGRect(x:0, y: 90, width: view.frame.width, height: view.frame.height)
-    
- profileView.frame = CGRect(origin: .zero, size: view.bounds.size)
- }
-       */
+  
        
     
 
