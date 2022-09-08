@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
-    // Mark: делаю новую кнопку:
+    // MARK: делаю новую кнопку:
     
     let editButton: UIButton = {
         let button = UIButton()
@@ -37,14 +37,16 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .lightGray
-        self.title = "Профиль"
+       
         
         view.addSubview(profileView)
         view.addSubview(editButton)
         navBarCustomization()
         addConstrains()
+        setupGestures()
     }
     
     
@@ -52,7 +54,7 @@ class ProfileViewController: UIViewController {
         print("тeст кнопки редактирования")
     }
     
-    // Mark: создаю "чёлку" навигационного бара
+    // MARK: создаю "чёлку" навигационного бара
     func navBarCustomization () {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemBackground
@@ -62,14 +64,39 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+       
         
         
         self.navigationItem.title = "Профиль"
         
-        // Mark: добавляю кнопку справа нав бара (это так, для саморазвития)
+        // MARK: добавляю кнопку справа нав бара (это так, для саморазвития)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
+        
+        //это не по заданию, но захотелось реализовать анлог и возврат на страницу регистрации, тут я столкнулся с интересными особенностями которые пришлось решать (вроде всё получилось и работает корректно)
+        //MARK: меняю левую кнопку
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(pressExit))
     }
+    
+    private func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func didHideKeyboard(_ notification: Notification){
+        self.forcedHidingKeyboard()
+    }
+    @objc private func forcedHidingKeyboard() {
+        self.view.endEditing(true)
+        print("keyboard is off")
+    }
+    
+    //MARK: таргет кнопки выход
+    @objc func pressExit() {
+        let loginViewController = LoginViewController()
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     func addConstrains(){
         NSLayoutConstraint.activate([

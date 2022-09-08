@@ -26,8 +26,8 @@ class FeedViewController: UIViewController {
         button.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         button.setTitle(" читать пост ", for: .normal)
         button.titleLabel?.font = UIFont(name: "Hannotate SC Bold", size: 30)
-        button.setImage(UIImage(systemName: "book.circle"), for: .normal)
-        button.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
+        //button.setImage(UIImage(systemName: "book.circle"), for: .normal)
+        //button.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
         button.backgroundColor = .systemYellow
         button.setTitleColor(UIColor.black, for: .normal)
         button.layer.cornerRadius = 8
@@ -38,8 +38,8 @@ class FeedViewController: UIViewController {
         secondButton.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         secondButton.setTitle(" читать пост ", for: .normal)
         secondButton.titleLabel?.font = UIFont(name: "Hannotate SC Bold", size: 30)
-        secondButton.setImage(UIImage(systemName: "book.circle"), for: .normal)
-        secondButton.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
+        //secondButton.setImage(UIImage(systemName: "book.circle"), for: .normal)
+        //secondButton.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
         secondButton.backgroundColor = .systemYellow
         secondButton.setTitleColor(UIColor.black, for: .normal)
         secondButton.layer.cornerRadius = 8

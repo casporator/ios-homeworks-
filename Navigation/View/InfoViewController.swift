@@ -64,6 +64,8 @@ class InfoViewController: UIViewController {
                ])
         
     }
+    
+    
        // функция возврата на "ПостВью"
         @objc func goToPostController() {
           self.dismiss(animated: true, completion: nil)

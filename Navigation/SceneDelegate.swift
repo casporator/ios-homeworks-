@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var feedTabNavigationController : UINavigationController!
     var profileTabNavigationController : UINavigationController!
+    var loginTabNavigationController : UINavigationController!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -24,8 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
+        loginTabNavigationController = UINavigationController.init(rootViewController: LoginViewController())
         
-        tabBarController.viewControllers = [feedTabNavigationController, profileTabNavigationController]
+        tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController]
         
         // настраиваем кнопки таббара
         let item1 = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.circle"), tag: 1)
@@ -33,6 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         profileTabNavigationController.tabBarItem = item1
         feedTabNavigationController.tabBarItem = item2
+        loginTabNavigationController.tabBarItem = item1
         
         
         
