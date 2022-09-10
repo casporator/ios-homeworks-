@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: передаю ProfileHeader в первую секцию
+    //MARK: передаю ProfileHeader в Хэдер
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
