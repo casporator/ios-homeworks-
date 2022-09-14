@@ -54,11 +54,16 @@ class LoginViewController : UIViewController {
         email.leftViewMode = .always
         email.toAutoLayout()
         email.autocapitalizationType = .none
-        email.layer.borderWidth = 0.5
-        email.layer.borderColor = UIColor.lightGray.cgColor
-        email.layer.cornerRadius = 10
         
         return email
+    }()
+    
+    private lazy var line : UIView = {
+        let line = UIView()
+        line.backgroundColor = .lightGray
+        line.toAutoLayout()
+        
+        return line
     }()
     
     // MARK: создаю поле ввода пароля
@@ -71,10 +76,7 @@ class LoginViewController : UIViewController {
         password.toAutoLayout()
         password.isSecureTextEntry = true //делаю скрытый ввод текста
         password.autocapitalizationType = .none
-        password.layer.borderWidth = 0.5
-        password.layer.borderColor = UIColor.lightGray.cgColor
-        password.layer.cornerRadius = 10
-        
+      
         return password
     }()
     
@@ -160,9 +162,11 @@ class LoginViewController : UIViewController {
     
     func addViews(){
         view.addSubview(scrollView)
-        scrollView.addSubview(logoImageView)
+        
         stackViewTextFields.addArrangedSubview(emailTextField)
+        stackViewTextFields.addArrangedSubview(line)
         stackViewTextFields.addArrangedSubview(passwordTextField)
+        scrollView.addSubview(logoImageView)
         scrollView.addSubview(stackViewTextFields)
         scrollView.addSubview(loginButton)
         
@@ -185,16 +189,20 @@ class LoginViewController : UIViewController {
             stackViewTextFields.leftAnchor.constraint(equalTo: super.view.leftAnchor, constant: 16),
             stackViewTextFields.heightAnchor.constraint(equalToConstant: 100),
             
-            emailTextField.heightAnchor.constraint(equalToConstant: 50),
+            emailTextField.heightAnchor.constraint(equalToConstant: 49.75),
             emailTextField.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
-            emailTextField.leftAnchor.constraint(equalTo: stackViewTextFields.leftAnchor, constant: 0),
+            emailTextField.leftAnchor.constraint(equalTo: stackViewTextFields.leftAnchor),
             
-            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+            line.heightAnchor.constraint(equalToConstant: 0.5),
+            line.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
+            line.leftAnchor.constraint(equalTo: super.view.leftAnchor, constant: 16),
+
+            passwordTextField.heightAnchor.constraint(equalToConstant: 49.75),
             passwordTextField.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 0),
-            passwordTextField.leftAnchor.constraint(equalTo: stackViewTextFields.leftAnchor, constant: 0),
+            passwordTextField.topAnchor.constraint(equalTo: line.bottomAnchor),
+            passwordTextField.leftAnchor.constraint(equalTo: stackViewTextFields.leftAnchor),
             
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            loginButton.topAnchor.constraint(equalTo: stackViewTextFields.bottomAnchor, constant: 16),
             loginButton.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.leftAnchor.constraint(equalTo: super.view.leftAnchor, constant: 16),

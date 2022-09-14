@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     
     private let image: UIImageView = {
@@ -62,7 +62,7 @@ class ProfileHeaderView: UIView {
     private let textField : UITextField = {
         let txtField = UITextField()
         txtField.font = UIFont(name: "regular", size: 15.0)
-        txtField.placeholder = "Enter you status"
+        txtField.placeholder = " Enter you status"
         txtField.backgroundColor = .white
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.layer.borderWidth = 1
@@ -75,9 +75,9 @@ class ProfileHeaderView: UIView {
     
     var statusText: String = ""
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+
         addViews()
         addConstraints()
     }
@@ -121,15 +121,14 @@ func addConstraints(){
         textField.heightAnchor.constraint(equalToConstant: 40),
         textField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -10),
         textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-        textField.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16)
+        textField.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
+        
+        self.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30)
         ])
     }
    
     func addViews(){
-        addSubview(image)
-        addSubview(label)
-        addSubview(button)
-        addSubview(statusLabel)
-        addSubview(textField)
+        addSubviews(image, label, button, statusLabel, textField)
+       
     }
 }
