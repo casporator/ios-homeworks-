@@ -133,13 +133,11 @@ class LoginViewController : UIViewController {
             : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
-            
-            print("keyboard is on")
         }
     }
     
     //MARK: Функция тапа клавиатуры
-    private func setupGestures() {
+     func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -148,10 +146,9 @@ class LoginViewController : UIViewController {
     @objc func didHideKeyboard(_ notification: Notification){
         self.forcedHidingKeyboard()
     }
-    @objc private func forcedHidingKeyboard() {
+    @objc  func forcedHidingKeyboard() {
         self.view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        print("keyboard is off")
     }
     
     //MARK: Функция нажатия кнопки Login
