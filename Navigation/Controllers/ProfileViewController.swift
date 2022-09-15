@@ -12,7 +12,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped) // (.plain это для себя)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
@@ -25,26 +25,29 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .white
         view.addSubview(tableView)
         addConstraints()
         tableView.reloadData()
         
-    
     func addConstraints(){
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), //тут по уму я хотел прикрепить к bottomAncchor, но тогда почему-то белый экран. не могу понять в чём причина
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), 
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
   }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
 }
 
 extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: передаю ProfileHeader в первую секцию
+    //MARK: передаю ProfileHeader в Хэдер
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
@@ -53,16 +56,36 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 //я так понимаю если число секций = 1, то можно не прописывать?
+        return 2 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        if section == 0 {
+            return 1
+        }
+        
+        if section == 1 {
+            return posts.count
+        }
+        return 0
     }
-    
+  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0{
+            let photosViewController = PhotosViewController()
+            navigationController?.pushViewController(photosViewController, animated: false)
+        }
+    }
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "indentPostTableCell", for: indexPath) as? PostTableViewCell else {
+        if indexPath.section == 0 {
+            
+            return PhotoTableViewCell()
+            
+        }else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "indentPostTableCell", for: indexPath) as? PostTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "indentDefaultTableCell", for: indexPath)
+        
             return cell
         }
         
@@ -76,6 +99,10 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         cell.setup(with: PostModel)
         
         return cell
+            
+        } else {
+            return tableView.dequeueReusableCell(withIdentifier: "defaultTableCellIdentifier", for: indexPath)
+        }
     }
 }
 
