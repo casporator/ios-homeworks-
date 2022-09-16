@@ -19,29 +19,67 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "indentPostTableCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "indentDefaultTableCell")
         tableView.rowHeight = UITableView.automaticDimension
+        
         return tableView
+    }()
+    
+    private lazy var duplicateAvatar : UIImageView = {
+        let avatar = UIImageView()
+        avatar.image = UIImage(named: "IMG_0037")
+        avatar.layer.cornerRadius = 60
+        avatar.layer.masksToBounds = true
+        avatar.layer.borderWidth = 3
+        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.isUserInteractionEnabled = true
+        avatar.toAutoLayout()
+        
+        return avatar
+    }()
+
+    private lazy var xmarkView : UIImageView = {
+        let xmark = UIImageView()
+        xmark.image = UIImage(systemName: "xmark")
+        xmark.tintColor = .white
+        xmark.isHidden = true
+        xmark.isUserInteractionEnabled = true
+        xmark.toAutoLayout()
+        
+        return xmark
+    }()
+    
+    private lazy var hiddenView : UIView = {
+        var view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.isHidden = true
+        view.toAutoLayout()
+        
+        return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view.addSubview(tableView)
+        view.addSubviews(tableView)
         addConstraints()
         tableView.reloadData()
-        
+       }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+ 
     func addConstraints(){
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), 
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
         ])
-    }
-  }
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-        
     }
 }
 
