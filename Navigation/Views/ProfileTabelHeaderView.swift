@@ -135,7 +135,7 @@ func addConstraints(){
        
     }
 
-    //MARK: устанавливаю уведомление о клике на аватарку
+    //MARK: устанавливаю тач и уведомление о клике на аватарку
     func addGestures(){
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
         self.image.addGestureRecognizer(tapGestureRecognizer)
@@ -147,15 +147,15 @@ func addConstraints(){
         image.isHidden = true
     }
     
-    //MARK: устанавливаю уведомление о клике на xmarkView
+    //MARK: устанавливаю тач и уведомление о клике на xmarkView
     func addNotifications(){
         NotificationCenter.default.addObserver(self,
-            selector: #selector(didTouchClose(notification:)),
+            selector: #selector(didTouchXmark(notification:)),
             name: Notification.Name("userTouchXmark"),
             object: nil)
     }
     
-    @objc func didTouchClose(notification: Notification) {
+    @objc func didTouchXmark(notification: Notification) {
         image.isHidden = false
     }
 }

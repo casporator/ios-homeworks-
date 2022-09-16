@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController {
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = UIColor.white.cgColor
-        avatar.isUserInteractionEnabled = true
         avatar.isHidden = true
         avatar.toAutoLayout()
         
@@ -73,18 +72,18 @@ class ProfileViewController: UIViewController {
        }
     
     
+   
+    @objc func didTouchAvatar(notification: Notification) {
+        startAnimation()
+    }
+   
+    @objc func didTouchXmark(_ gestureRecognizer: UITapGestureRecognizer){
+        closeAnimation()
+    }
+    
     //MARK: анимация
-    @objc func didAvatarClick(notification: Notification) {
-        startAnimation()
-    }
-    
-    @objc func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer){
-        startAnimation()
-    }
-    
-
     private func startAnimation() {
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut) {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
             //MARK: задаю все изменения дубликата аватара при анимации
             self.duplicateAvatar.isHidden = false
             self.duplicateAvatar.center = self.hiddenView.center
@@ -96,7 +95,7 @@ class ProfileViewController: UIViewController {
            
             //MARK: задаю все изменения вью при анимации
             self.hiddenView.isHidden = false
-            self.hiddenView.alpha = 0.8
+            self.hiddenView.alpha = 0.6
 
             //MARK: задаю появление xmarkView при окончании анимации
         } completion: { _ in
@@ -104,6 +103,11 @@ class ProfileViewController: UIViewController {
                 self.xmarkView.isHidden = false
             })
         }
+    }
+    
+    //MARK: анимация закрытия
+    private func closeAnimation() {
+        
     }
 
 
@@ -113,8 +117,8 @@ class ProfileViewController: UIViewController {
     
     func addNotification(){
         NotificationCenter.default.addObserver(self,
-            selector: #selector(didAvatarClick(notification:)),
-            name: Notification.Name("userTouchAva!"),
+            selector: #selector(didTouchAvatar(notification:)),
+            name: Notification.Name("userTouchAva"),
             object: nil)
     }
  
@@ -143,15 +147,14 @@ class ProfileViewController: UIViewController {
         ])
     }
     
+    //MARK: устанавливаю реагирование на тач для xmarkView
     func addGestures(){
-       
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
-        self.duplicateAvatar.addGestureRecognizer(tapGestureRecognizer)
-
+         let tapGestureRecognizerForXmark = UITapGestureRecognizer(target: self, action: #selector(self.didTouchXmark(_:)))
+        self.xmarkView.addGestureRecognizer(tapGestureRecognizerForXmark)
     }
 }
-
-
+   
+  
 
 extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     
