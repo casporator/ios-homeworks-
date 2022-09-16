@@ -30,9 +30,9 @@ class ProfileViewController: UIViewController {
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
-        avatar.layer.borderColor = UIColor.black.cgColor
+        avatar.layer.borderColor = UIColor.white.cgColor
         avatar.isUserInteractionEnabled = true
-        avatar.isHidden = false
+        avatar.isHidden = true
         avatar.toAutoLayout()
         
         return avatar

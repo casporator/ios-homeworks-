@@ -18,6 +18,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         photo.layer.masksToBounds = true
         photo.layer.borderWidth = 3
         photo.layer.borderColor = UIColor.white.cgColor
+        photo.isUserInteractionEnabled = true //добавляю реакцию на нажатие аватарки
         
         return photo
     }()
@@ -80,6 +81,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
         addViews()
         addConstraints()
+        addGestures()
+        addNotifications()
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -131,4 +134,29 @@ func addConstraints(){
         addSubviews(image, label, button, statusLabel, textField)
        
     }
+
+    //MARK: устанавливаю уведомление о клике на аватарку
+    func addGestures(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
+        self.image.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer){
+        NotificationCenter.default.post(name: Notification.Name("userTouchAva"), object: nil)
+        //MARK: скрываем оригинальный аватар
+        image.isHidden = true
+    }
+    
+    //MARK: устанавливаю уведомление о клике на xmarkView
+    func addNotifications(){
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(didTouchClose(notification:)),
+            name: Notification.Name("userTouchXmark"),
+            object: nil)
+    }
+    
+    @objc func didTouchClose(notification: Notification) {
+        image.isHidden = false
+    }
 }
+
