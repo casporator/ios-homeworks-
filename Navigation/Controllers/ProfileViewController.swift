@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = UIColor.black.cgColor
         avatar.isUserInteractionEnabled = true
-        avatar.isHidden = true
+        avatar.isHidden = false
         avatar.toAutoLayout()
         
         return avatar
@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view.addSubviews(tableView, duplicateAvatar, xmarkView, hiddenView )
+        view.addSubviews(tableView, hiddenView, duplicateAvatar, xmarkView)
         addConstraints()
         tableView.reloadData()
         addGestures()
@@ -96,7 +96,7 @@ class ProfileViewController: UIViewController {
            
             //MARK: задаю все изменения вью при анимации
             self.hiddenView.isHidden = false
-            self.hiddenView.alpha = 0.6
+            self.hiddenView.alpha = 0.8
 
             //MARK: задаю появление xmarkView при окончании анимации
         } completion: { _ in
@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController {
             hiddenView.rightAnchor.constraint(equalTo: view.rightAnchor),
             hiddenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            duplicateAvatar.topAnchor.constraint(equalTo: hiddenView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            duplicateAvatar.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 16),
             duplicateAvatar.leftAnchor.constraint(equalTo: hiddenView.leftAnchor, constant: 16),
             duplicateAvatar.widthAnchor.constraint(equalToConstant: 120),
             duplicateAvatar.heightAnchor.constraint(equalToConstant: 120),
