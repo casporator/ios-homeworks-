@@ -23,19 +23,22 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
+    //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
         avatar.image = UIImage(named: "IMG_0037")
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
-        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.layer.borderColor = UIColor.black.cgColor
         avatar.isUserInteractionEnabled = true
+        avatar.isHidden = true
         avatar.toAutoLayout()
         
         return avatar
     }()
-
+    
+    //MARK: объявляю элемент закрытия и делаю его скрытым
     private lazy var xmarkView : UIImageView = {
         let xmark = UIImageView()
         xmark.image = UIImage(systemName: "xmark")
@@ -47,6 +50,7 @@ class ProfileViewController: UIViewController {
         return xmark
     }()
     
+    //MARK: объявляю вью и делаю его скрытым
     private lazy var hiddenView : UIView = {
         var view = UIView()
         view.backgroundColor = .black
@@ -61,16 +65,58 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view.addSubviews(tableView)
+        view.addSubviews(tableView, duplicateAvatar, xmarkView, hiddenView )
         addConstraints()
         tableView.reloadData()
+        addGestures()
+        addNotification()
        }
+    
+    
+    //MARK: анимация
+    @objc func didAvatarClick(notification: Notification) {
+        startAnimation()
+    }
+    
+    @objc func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer){
+        startAnimation()
+    }
+    
+
+    private func startAnimation() {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut) {
+            //MARK: задаю все изменения дубликата аватара при анимации
+            self.duplicateAvatar.isHidden = false
+            self.duplicateAvatar.center = self.hiddenView.center
+            self.duplicateAvatar.transform = CGAffineTransform(
+                scaleX: self.hiddenView.frame.width / self.duplicateAvatar.frame.width,
+                     y: self.hiddenView.frame.width / self.duplicateAvatar.frame.width)
+            self.duplicateAvatar.isUserInteractionEnabled = false
+            self.duplicateAvatar.layer.cornerRadius = 0
+           
+            //MARK: задаю все изменения вью при анимации
+            self.hiddenView.isHidden = false
+            self.hiddenView.alpha = 0.6
+
+            //MARK: задаю появление xmarkView при окончании анимации
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.xmarkView.isHidden = false
+            })
+        }
+    }
 
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    func addNotification(){
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(didAvatarClick(notification:)),
+            name: Notification.Name("userTouchAva!"),
+            object: nil)
+    }
  
     func addConstraints(){
         NSLayoutConstraint.activate([
@@ -79,9 +125,33 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
+            hiddenView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hiddenView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            hiddenView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            hiddenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            duplicateAvatar.topAnchor.constraint(equalTo: hiddenView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            duplicateAvatar.leftAnchor.constraint(equalTo: hiddenView.leftAnchor, constant: 16),
+            duplicateAvatar.widthAnchor.constraint(equalToConstant: 120),
+            duplicateAvatar.heightAnchor.constraint(equalToConstant: 120),
+
+            xmarkView.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 150),
+            xmarkView.rightAnchor.constraint(equalTo: hiddenView.rightAnchor, constant: -16),
+            xmarkView.widthAnchor.constraint(equalToConstant: 25),
+            xmarkView.heightAnchor.constraint(equalToConstant: 25),
+            
         ])
     }
+    
+    func addGestures(){
+       
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
+        self.duplicateAvatar.addGestureRecognizer(tapGestureRecognizer)
+
+    }
 }
+
+
 
 extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     
