@@ -98,7 +98,7 @@ class ProfileViewController: UIViewController {
             self.hiddenView.isHidden = false
             self.hiddenView.alpha = 0.5
             
-            self.tableView.applyBlurEffect() //ещё с Вашего разрешения я добавил блюрэффект для тэйбвью. Задался вопросом как реализовать и решил поправктикаваться
+            self.tableView.applyBlurEffect() //ещё с Вашего разрешения я добавил блюрэффект для тэйбвью. Задался вопросом как реализовать и решил попрактиковаться
             
             //MARK: задаю появление xmarkView при окончании анимации
         } completion: { _ in
@@ -116,12 +116,13 @@ class ProfileViewController: UIViewController {
             self.duplicateAvatar.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.duplicateAvatar.center = CGPoint(x: 75, y: 120)
             self.duplicateAvatar.layer.cornerRadius = 60
-            self.duplicateAvatar.isUserInteractionEnabled = true
             
+            //возвращаю прозрачность скрытого вью
             self.hiddenView.alpha = 0
-            
+            // прячу xmark
             self.xmarkView.isHidden = true
             
+           
             
         } completion: { _ in
            

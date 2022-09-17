@@ -148,7 +148,7 @@ func addConstraints(){
     
     }
     
-    //MARK: устанавливаю тач и уведомление о клике на xmarkView
+    //MARK: уведомление о клике на xmarkView
     func addNotifications(){
         NotificationCenter.default.addObserver(self,
             selector: #selector(didTouchXmark(notification:)),
