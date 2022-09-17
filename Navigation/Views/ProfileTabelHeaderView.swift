@@ -145,6 +145,7 @@ func addConstraints(){
         NotificationCenter.default.post(name: Notification.Name("userTouchAva"), object: nil)
         //MARK: скрываем оригинальный аватар
         image.isHidden = true
+    
     }
     
     //MARK: устанавливаю тач и уведомление о клике на xmarkView

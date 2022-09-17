@@ -92,11 +92,14 @@ class ProfileViewController: UIViewController {
                      y: self.hiddenView.frame.width / self.duplicateAvatar.frame.width)
             self.duplicateAvatar.isUserInteractionEnabled = false
             self.duplicateAvatar.layer.cornerRadius = 0
+            
            
             //MARK: задаю все изменения вью при анимации
             self.hiddenView.isHidden = false
             self.hiddenView.alpha = 0.6
-
+            
+            self.tableView.applyBlurEffect() //ещё с Вашего разрешения я добавил блюрэффект для тэйбвью. Задался вопросом как реализовать и решил поправктикаваться
+            
             //MARK: задаю появление xmarkView при окончании анимации
         } completion: { _ in
             UIView.animate(withDuration: 0.3, animations: {
