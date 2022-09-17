@@ -96,7 +96,7 @@ class ProfileViewController: UIViewController {
            
             //MARK: задаю все изменения вью при анимации
             self.hiddenView.isHidden = false
-            self.hiddenView.alpha = 0.6
+            self.hiddenView.alpha = 0.5
             
             self.tableView.applyBlurEffect() //ещё с Вашего разрешения я добавил блюрэффект для тэйбвью. Задался вопросом как реализовать и решил поправктикаваться
             
@@ -110,7 +110,26 @@ class ProfileViewController: UIViewController {
     
     //MARK: анимация закрытия
     private func closeAnimation() {
-        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
+            
+            //возвращаю аватар
+            self.duplicateAvatar.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.duplicateAvatar.center = CGPoint(x: 75, y: 120)
+            self.duplicateAvatar.layer.cornerRadius = 60
+            self.duplicateAvatar.isUserInteractionEnabled = true
+            
+            self.hiddenView.alpha = 0
+            
+            self.xmarkView.isHidden = true
+            
+            
+        } completion: { _ in
+           
+            NotificationCenter.default.post(name: Notification.Name("userTouchXmark"), object: nil)
+            self.duplicateAvatar.isHidden = true
+            self.hiddenView.isHidden = true
+            self.tableView.removeBlurEffect() //отключаю Блюр для тейблвью
+        }
     }
 
 
@@ -142,10 +161,10 @@ class ProfileViewController: UIViewController {
             duplicateAvatar.widthAnchor.constraint(equalToConstant: 120),
             duplicateAvatar.heightAnchor.constraint(equalToConstant: 120),
 
-            xmarkView.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 150),
+            xmarkView.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 16),
             xmarkView.rightAnchor.constraint(equalTo: hiddenView.rightAnchor, constant: -16),
-            xmarkView.widthAnchor.constraint(equalToConstant: 25),
-            xmarkView.heightAnchor.constraint(equalToConstant: 25),
+            xmarkView.widthAnchor.constraint(equalToConstant: 30),
+            xmarkView.heightAnchor.constraint(equalToConstant: 30),
             
         ])
     }
