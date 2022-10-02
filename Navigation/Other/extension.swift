@@ -9,12 +9,32 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
+    func toAutoLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
 
-func toAutoLayout() {
-    translatesAutoresizingMaskIntoConstraints = false
+    func applyBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blureEffectView = UIVisualEffectView(effect: blurEffect)
+        blureEffectView.frame = bounds
+        blureEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blureEffectView)
+    }
+    
+    func removeBlurEffect() {
+        let blurredEffectViews = self.subviews.filter{$0 is UIVisualEffectView}
+        blurredEffectViews.forEach{ blurView in
+            blurView.removeFromSuperview()
+        }
+    }
 }
+    
+    
+ 
 
-func addSubviews(_ subviews: UIView...) {
-    subviews.forEach { addSubview($0) }
-}
-}
+
