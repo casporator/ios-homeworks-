@@ -71,6 +71,7 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
         addGestures()
         addNotification()
+        hideKeyboardWhenTappedAround()
         
 #if DEBUG
            view.backgroundColor = .blue
