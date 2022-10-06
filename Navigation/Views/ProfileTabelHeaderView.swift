@@ -45,7 +45,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.addTarget(ProfileHeaderView.self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         return button
     }()
@@ -69,7 +69,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         txtField.layer.borderWidth = 1
         txtField.layer.cornerRadius = 12
         txtField.layer.borderColor = UIColor.black.cgColor
-        txtField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged), for: .editingChanged)
+        txtField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return txtField
     }()
     
