@@ -64,12 +64,17 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        view.backgroundColor = .white
         view.addSubviews(tableView, hiddenView, duplicateAvatar, xmarkView)
         addConstraints()
         tableView.reloadData()
         addGestures()
         addNotification()
+        
+        #if DEBUG
+            view.backgroundColor = .blue
+        #else
+        view.backgroundColor = .white
+        #endif
        }
     
     
