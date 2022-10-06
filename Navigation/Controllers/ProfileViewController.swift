@@ -63,6 +63,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBarController?.tabBar.isHidden = false
         view.backgroundColor = .white
         view.addSubviews(tableView, hiddenView, duplicateAvatar, xmarkView)
         addConstraints()
