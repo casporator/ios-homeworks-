@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
- struct Post {
-    var autor: String
-    var description: String
-    var image: UIImage?
-    var likes: Int
-    var views: Int
+ public struct Post {
+   public var autor: String
+   public var description: String
+   public var image: UIImage?
+   public var likes: Int
+   public var views: Int
 }
 
-var posts: [Post] = [
+public var posts: [Post] = [
  Post(autor: "Svinki.ru", description: "Находясь в естественных условиях, дикие морские свинки предпочитают проявлять свою активность, как с восходом солнца, так и с наступлением сумерек. Не смотря на свои размеры, зверьки бегают достаточно быстро и считаются весьма проворными, всегда находящимися настороже. /nОбитает дикая морская свинка, как в лесных массивах, так и в гористой местности. Для обустройства своего гнезда они подыскивают тихие укромные места, при этом нор они не роют. Чтобы сформировать свое жилище они пользуются сухой травой, пухом и тонкими ветками деревьев и кустарников.", image: UIImage(named: "pigs"), likes: 157_032, views: 250_017),
  
  Post(autor: "трудовая рыбалка", description: "Всей семьёй отправились в поход на одно тихое, даже можно сказать дикое озеро. Выбрали роскошный остров и поселились на три дня! Это был первый выезд для сына в лес с ночёвкой в палатке.  ", image: UIImage(named: "island"), likes: 3_543, views: 7_012),

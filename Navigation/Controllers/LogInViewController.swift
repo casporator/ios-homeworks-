@@ -97,7 +97,7 @@ class LoginViewController : UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+        
         
         addViews()
         addConstraints()
