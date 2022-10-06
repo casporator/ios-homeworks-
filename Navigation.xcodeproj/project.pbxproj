@@ -16,7 +16,6 @@
 		BB15978628AA75F100BBA453 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15978528AA75F100BBA453 /* ProfileViewController.swift */; };
 		BB15978828AAD82600BBA453 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15978728AAD82600BBA453 /* PostViewController.swift */; };
 		BB15978A28ABDB9C00BBA453 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15978928ABDB9C00BBA453 /* InfoViewController.swift */; };
-		BB2D2D4A28EDCBDC00742E1E /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = BB2D2D4928EDCBDC00742E1E /* StorageService.docc */; };
 		BB2D2D5028EDCBDC00742E1E /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D4628EDCBDC00742E1E /* StorageService.framework */; };
 		BB2D2D5828EDCBDC00742E1E /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB2D2D4828EDCBDC00742E1E /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB2D2D5B28EDCBDC00742E1E /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D4628EDCBDC00742E1E /* StorageService.framework */; };
@@ -85,7 +84,6 @@
 		BB15978928ABDB9C00BBA453 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		BB2D2D4628EDCBDC00742E1E /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2D2D4828EDCBDC00742E1E /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
-		BB2D2D4928EDCBDC00742E1E /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		BB2D2D4F28EDCBDC00742E1E /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabelHeaderView.swift; sourceTree = "<group>"; };
 		BBAB864628B4448100BB951A /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 			children = (
 				BBAFDEE328C9241200C4177C /* Posts.swift */,
 				BB2D2D4828EDCBDC00742E1E /* StorageService.h */,
-				BB2D2D4928EDCBDC00742E1E /* StorageService.docc */,
 			);
 			path = StorageService;
 			sourceTree = "<group>";
@@ -379,7 +376,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB2D2D4A28EDCBDC00742E1E /* StorageService.docc in Sources */,
 				BB2D2D6428EDCC2300742E1E /* Posts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
