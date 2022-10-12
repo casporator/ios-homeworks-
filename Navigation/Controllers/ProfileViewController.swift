@@ -240,6 +240,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
                 filteredImage in post.image = filteredImage
             }
+          
            
             
             let PostModel = PostTableViewCell.ViewModel(
@@ -247,7 +248,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             descriptionText: posts[indexPath.row].description,
             likes: "Likes: \(posts[indexPath.row].likes)",
             views: "Views: \(posts[indexPath.row].views)",
-            image: posts[indexPath.row].image
+            image: post.image
         )
         cell.setup(with: PostModel)
         
