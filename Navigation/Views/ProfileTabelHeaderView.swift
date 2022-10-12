@@ -120,6 +120,7 @@ func addConstraints(){
     statusLabel.snp.makeConstraints { (make) -> Void in
         make.top.equalTo(self.snp.top).offset(54)
         make.left.equalTo(image.snp.right).offset(16)
+        make.right.equalTo(self.snp.right).offset(-16)
     }
 
     textField.snp.makeConstraints { (make) -> Void in
