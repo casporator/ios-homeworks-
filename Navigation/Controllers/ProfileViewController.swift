@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     
@@ -231,13 +232,23 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         
             return cell
         }
-        
-        let PostModel = PostTableViewCell.ViewModel(
+            
+            //MARK: устанавливаю фильтры по заданию
+            
+            var post = posts[indexPath.row]
+                             
+            ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
+                filteredImage in post.image = filteredImage
+            }
+          
+           
+            
+            let PostModel = PostTableViewCell.ViewModel(
             autor: posts[indexPath.row].autor,
             descriptionText: posts[indexPath.row].description,
             likes: "Likes: \(posts[indexPath.row].likes)",
             views: "Views: \(posts[indexPath.row].views)",
-            image: posts[indexPath.row].image
+            image: post.image
         )
         cell.setup(with: PostModel)
         

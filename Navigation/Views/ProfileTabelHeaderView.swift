@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
@@ -103,32 +104,41 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
    
 func addConstraints(){
-       NSLayoutConstraint.activate([
-        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-        image.heightAnchor.constraint(equalToConstant: 120),
-        image.widthAnchor.constraint(equalToConstant: 120),
+    
+    image.snp.makeConstraints { (make) -> Void in
+        make.height.width.equalTo(120)
+        make.top.equalTo(self.snp.top).offset(16)
+        make.left.equalTo(self.snp.left).offset(16)
+            }
+
+    label.snp.makeConstraints { (make) -> Void in
+        make.top.equalTo(self.snp.top).offset(27)
         
-        label.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-        label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-        label.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
-        
-        button.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-        button.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-        button.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
-        button.heightAnchor.constraint(equalToConstant: 50),
-        
-        statusLabel.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
-        statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -54),
-        
-        textField.heightAnchor.constraint(equalToConstant: 40),
-        textField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -10),
-        textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-        textField.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 16),
-        
-        self.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30)
-        ])
+        make.left.equalTo(image.snp.right).offset(16)
     }
+
+    statusLabel.snp.makeConstraints { (make) -> Void in
+        make.top.equalTo(self.snp.top).offset(54)
+        make.left.equalTo(image.snp.right).offset(16)
+        make.right.equalTo(self.snp.right).offset(-16)
+    }
+
+    textField.snp.makeConstraints { (make) -> Void in
+        make.top.equalTo(self.snp.top).offset(80)
+        make.left.equalTo(image.snp.right).offset(16)
+        make.right.equalTo(self.snp.right).offset(-16)
+        make.height.equalTo(40)
+    }
+
+    button.snp.makeConstraints { (make) -> Void in
+        make.left.equalTo(self.snp.left).offset(16)
+        make.right.equalTo(self.snp.right).offset(-16)
+        make.top.equalTo(image.snp.bottom).offset(16)
+        make.bottom.equalTo(self.snp.bottom).offset(-16)
+        make.height.equalTo(50)
+    }
+}
+    
    
     func addViews(){
         addSubviews(image, label, button, statusLabel, textField)
