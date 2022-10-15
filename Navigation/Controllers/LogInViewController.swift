@@ -92,6 +92,10 @@ class LoginViewController : UIViewController {
         login.addTarget(self, action: #selector(pressLogin), for: .touchUpInside)
         return login
     }()
+    // объявляю алертконтроллер (в случае неверного логина)
+    let alertPassword = UIAlertController(title: "Error!", message: "Wrong password", preferredStyle: .alert)
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +106,7 @@ class LoginViewController : UIViewController {
         addViews()
         addConstraints()
         setupGestures()
+        
     }
     
     // MARK: клавиатура
@@ -153,10 +158,21 @@ class LoginViewController : UIViewController {
     
     //MARK: Функция нажатия кнопки Login
     @objc func pressLogin() {
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+       //делаю вход через password
+       let incomingPassword = passwordTextField.text
+#if DEBUG
+        let loginingUser = TestUserService(incomingUser: User(login: "1234", fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+#else
+        let loginingUser = CurrentUserService(incomingUser: User(login: "12345678", fullName: "Pipin", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+#endif
+        if loginingUser.loginCheck(login: incomingPassword ?? "") != nil{
+            let profileViewController = ProfileViewController()
+            profileViewController.user1 = loginingUser.incomingUser
+            navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            self.present(alertPassword, animated: true, completion: nil)
+        }
     }
-    
     func addViews(){
         view.addSubview(scrollView)
         
@@ -166,6 +182,8 @@ class LoginViewController : UIViewController {
         scrollView.addSubview(logoImageView)
         scrollView.addSubview(stackViewTextFields)
         scrollView.addSubview(loginButton)
+        
+        alertPassword.addAction(UIAlertAction(title: "Re-enter password ", style: .cancel))
         
     }
     

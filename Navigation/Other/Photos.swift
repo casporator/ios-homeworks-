@@ -15,3 +15,6 @@ let photoData = ["pig1.jpeg", "pig2.jpeg", "pig3.jpeg", "pig4.jpeg", "pig5.jpeg"
 let photoSizeInFeed = (UIScreen.main.bounds.width - 48)/4
 //MARK: задаю размер фотографий в альбоме
 let photoSizeInAlbom = (UIScreen.main.bounds.width - 32)/3
+
+
+

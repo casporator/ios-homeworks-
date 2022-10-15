@@ -11,7 +11,11 @@ import UIKit
 import StorageService
 import iOSIntPackage
 
+
 class ProfileViewController: UIViewController {
+   
+    var user1: User = User(login: "12345", fullName: "Hipster Dog", avatar:  UIImage(named: "IMG_0037") ?? UIImage(), status: "У меня тоже есть чувства. Например голод")
+  
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -28,7 +32,7 @@ class ProfileViewController: UIViewController {
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
-        avatar.image = UIImage(named: "IMG_0037")
+        avatar.image = user1.avatar
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
@@ -194,7 +198,9 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     //MARK: передаю ProfileHeader в Хэдер
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return ProfileHeaderView()
+            let profile = ProfileHeaderView()
+            profile.setupUserData(user: user1)
+            return profile
         }
         return nil
     }
