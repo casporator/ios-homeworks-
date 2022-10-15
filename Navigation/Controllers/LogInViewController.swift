@@ -160,9 +160,11 @@ class LoginViewController : UIViewController {
     @objc func pressLogin() {
        //делаю вход через password
        let incomingPassword = passwordTextField.text
-        
+#if DEBUG
+        let loginingUser = TestUserService(incomingUser: User(login: "1234", fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+#else
         let loginingUser = CurrentUserService(incomingUser: User(login: "12345678", fullName: "Pipin", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
-        
+#endif
         if loginingUser.loginCheck(login: incomingPassword ?? "") != nil{
             let profileViewController = ProfileViewController()
             profileViewController.user1 = loginingUser.incomingUser

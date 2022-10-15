@@ -27,7 +27,7 @@ final class User {
 }
 
 
-final class CurrentUserService  : UserService {
+final class CurrentUserService: UserService {
     
     let incomingUser : User
     
@@ -46,3 +46,20 @@ final class CurrentUserService  : UserService {
     }
 }
 
+final class TestUserService: UserService {
+    let incomingUser : User
+    
+    func loginCheck(login: String) -> User? {
+        if incomingUser.login == login {
+            
+            return incomingUser
+            
+        }
+        return nil
+    }
+    
+    init(incomingUser: User) {
+        self.incomingUser = incomingUser
+        
+    }
+}
