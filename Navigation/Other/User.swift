@@ -32,13 +32,8 @@ final class CurrentUserService: UserService {
     let incomingUser : User
     
     func loginCheck(login: String) -> User? {
-        if incomingUser.login == login {
-            
-            return incomingUser
-            
-        }
-        return nil
-    }
+                return incomingUser.login == login ? incomingUser : nil
+            }
     
     init(incomingUser: User) {
         self.incomingUser = incomingUser
@@ -50,13 +45,8 @@ final class TestUserService: UserService {
     let incomingUser : User
     
     func loginCheck(login: String) -> User? {
-        if incomingUser.login == login {
-            
-            return incomingUser
-            
-        }
-        return nil
-    }
+                return incomingUser.login == login ? incomingUser : nil
+            }
     
     init(incomingUser: User) {
         self.incomingUser = incomingUser

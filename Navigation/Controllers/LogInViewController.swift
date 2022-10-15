@@ -93,7 +93,7 @@ class LoginViewController : UIViewController {
         return login
     }()
     // объявляю алертконтроллер (в случае неверного логина)
-    let alertPassword = UIAlertController(title: "Error!", message: "Wrong password", preferredStyle: .alert)
+    let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login", preferredStyle: .alert)
     
     
     
@@ -159,13 +159,13 @@ class LoginViewController : UIViewController {
     //MARK: Функция нажатия кнопки Login
     @objc func pressLogin() {
        //делаю вход через password
-       let incomingPassword = passwordTextField.text
+       let incomingLogin = emailTextField.text
 #if DEBUG
-        let loginingUser = TestUserService(incomingUser: User(login: "1234", fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+        let loginingUser = TestUserService(incomingUser: User(login: "test", fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
 #else
-        let loginingUser = CurrentUserService(incomingUser: User(login: "12345678", fullName: "Pipin", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+        let loginingUser = CurrentUserService(incomingUser: User(login: "pipin@gmail.com", fullName: "Pipin", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
 #endif
-        if loginingUser.loginCheck(login: incomingPassword ?? "") != nil{
+        if loginingUser.loginCheck(login: incomingLogin ?? "") != nil{
             let profileViewController = ProfileViewController()
             profileViewController.user1 = loginingUser.incomingUser
             navigationController?.pushViewController(profileViewController, animated: true)
@@ -183,7 +183,7 @@ class LoginViewController : UIViewController {
         scrollView.addSubview(stackViewTextFields)
         scrollView.addSubview(loginButton)
         
-        alertPassword.addAction(UIAlertAction(title: "Re-enter password ", style: .cancel))
+        alertPassword.addAction(UIAlertAction(title: "Re-Login", style: .cancel))
         
     }
     
