@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
-        avatar.image = UIImage(named: "IMG_0037")
+        avatar.image = user1.avatar
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
