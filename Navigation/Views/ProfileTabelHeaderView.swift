@@ -54,6 +54,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     private var statusLabel: UILabel = {
         var statusLbl = UILabel()
         statusLbl.text = "Waiting for your status"
+        statusLbl.numberOfLines = 0
         statusLbl.textColor = .gray
         statusLbl.font = UIFont(name: "regular", size: 14.0)
         statusLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -84,10 +85,21 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addConstraints()
         addGestures()
         addNotifications()
+        
+        
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    // функция установки данных пользователя
+    func setupUserData(user : User){
+        label.text = user.fullName
+        image.image = user.avatar
+        statusLabel.text = user.status
+
+    }
+    
     
     @objc func buttonPressed() {
         
@@ -124,7 +136,7 @@ func addConstraints(){
     }
 
     textField.snp.makeConstraints { (make) -> Void in
-        make.top.equalTo(self.snp.top).offset(80)
+        make.top.equalTo(statusLabel.snp.bottom).offset(12)
         make.left.equalTo(image.snp.right).offset(16)
         make.right.equalTo(self.snp.right).offset(-16)
         make.height.equalTo(40)
@@ -133,7 +145,7 @@ func addConstraints(){
     button.snp.makeConstraints { (make) -> Void in
         make.left.equalTo(self.snp.left).offset(16)
         make.right.equalTo(self.snp.right).offset(-16)
-        make.top.equalTo(image.snp.bottom).offset(16)
+        make.top.equalTo(textField.snp.bottom).offset(12)
         make.bottom.equalTo(self.snp.bottom).offset(-16)
         make.height.equalTo(50)
     }
