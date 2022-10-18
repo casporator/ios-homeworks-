@@ -9,6 +9,9 @@ import UIKit
 
 class LoginViewController : UIViewController {
     
+    //Для класса LoginViewController сделайте свойство loginDelegate
+    var loginDelegate : LoginViewControllerDelegate?
+    
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
