@@ -18,17 +18,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
             
-        //MARK: Внедрите зависимость контроллера LoginViewController от LoginInspector:
-        let loginController = LoginViewController()
-        loginController.loginDelegate = LoginInspector()
-        
+       
         
        
         let tabBarController = UITabBarController()
         
         feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
-        loginTabNavigationController = UINavigationController.init(rootViewController: LoginViewController())
+        
+        //MARK: Внедрите зависимость контроллера LoginViewController от LoginInspector:
+        let loginController = LoginViewController()
+        loginController.loginDelegate = LoginInspector()
+        
+        loginTabNavigationController = UINavigationController.init(rootViewController: loginController)
         
         tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController]
         

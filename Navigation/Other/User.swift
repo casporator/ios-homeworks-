@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 final class User {
 
     let fullName : String
@@ -21,6 +22,7 @@ final class User {
         self.status = status
     }
 }
+
 
 final class CurrentUserService {
     

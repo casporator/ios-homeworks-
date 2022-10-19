@@ -6,44 +6,33 @@
 //
 
 import Foundation
-import UIKit
 
 protocol LoginViewControllerDelegate{
-    func checkLogin(what controller: LoginViewController,
-        login : String) -> Bool
- 
-    func checkPassword(what controller: LoginViewController,
-                   password : String) -> Bool
- }
-
+    func checkLogin(controller: LoginViewController,
+                    login: String, password: String) -> Bool
+}
 
 class Checker {
     static let cheker = Checker()
-
-    private let login : String = "login"
-    private let password: String = "password"
-
-    func checkLogin(login : String) -> Bool {
-        self.login == login ? true : false
+    
+    private let login = "1234"
+    private let password = "1234"
+    
+    func checkLogin(login: String, password: String) -> Bool {
+        self.login == login && self.password == password ? true : false
     }
-    func checkPassword(password : String) -> Bool {
-        self.password == password ? true : false
-    }
+    
     private init(){
-
+        
     }
 }
 
 struct LoginInspector: LoginViewControllerDelegate {
-    func checkLogin(what controller: LoginViewController,
-                    login : String) -> Bool {
-        return Checker.cheker.checkLogin(login: login)
+    func checkLogin(controller: LoginViewController,
+                    login: String, password: String) -> Bool {
+        return Checker.cheker.checkLogin(login: login, password: password)
         
     }
-    
-    func checkPassword(what controller: LoginViewController,
-                       password : String) -> Bool {
-        return Checker.cheker.checkPassword(password: password)
-    }
-        
 }
+        
+
