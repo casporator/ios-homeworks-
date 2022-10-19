@@ -161,14 +161,17 @@ class LoginViewController : UIViewController {
     
     //MARK: Функция нажатия кнопки Login
     @objc func pressLogin() {
-       //делаю вход через password
-       let incomingLogin = emailTextField.text
+     
+        let incomingLogin = emailTextField.text
+        let incomingPassword = passwordTextField.text
+        
 #if DEBUG
-        let loginingUser = TestUserService(incomingUser: User(login: "test", fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+        let loginingUser = TestUserService(incomingUser: User( fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
 #else
-        let loginingUser = CurrentUserService(incomingUser: User(login: "pipin@gmail.com", fullName: "Pipin", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+        let loginingUser = CurrentUserService(incomingUser: User(fullName: "Pipin", avatar: UIImage(named: "Пипин") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
 #endif
-        if loginingUser.loginCheck(login: incomingLogin ?? "") != nil{
+        if loginDelegate?.checkLogin(what: self, login: incomingLogin ?? "") == true  &&
+            loginDelegate?.checkPassword(what: self, password: incomingPassword ?? "") == true {
             let profileViewController = ProfileViewController()
             profileViewController.user1 = loginingUser.incomingUser
             navigationController?.pushViewController(profileViewController, animated: true)

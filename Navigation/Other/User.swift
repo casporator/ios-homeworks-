@@ -8,32 +8,23 @@
 import Foundation
 import UIKit
 
-protocol UserService {
-    func loginCheck (login : String) -> User?
-}
-
 final class User {
-    let login : String
+
     let fullName : String
     let avatar : UIImage
     let status : String
     
-    init(login: String, fullName: String, avatar: UIImage, status: String) {
-        self.login = login
+    init(fullName: String, avatar: UIImage, status: String) {
+        
         self.fullName = fullName
         self.avatar = avatar
         self.status = status
     }
 }
 
-
-final class CurrentUserService: UserService {
+final class CurrentUserService {
     
     let incomingUser : User
-    
-    func loginCheck(login: String) -> User? {
-                return incomingUser.login == login ? incomingUser : nil
-            }
     
     init(incomingUser: User) {
         self.incomingUser = incomingUser
@@ -41,13 +32,10 @@ final class CurrentUserService: UserService {
     }
 }
 
-final class TestUserService: UserService {
+final class TestUserService {
     let incomingUser : User
     
-    func loginCheck(login: String) -> User? {
-                return incomingUser.login == login ? incomingUser : nil
-            }
-    
+   
     init(incomingUser: User) {
         self.incomingUser = incomingUser
         

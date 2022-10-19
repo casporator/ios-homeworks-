@@ -33,3 +33,17 @@ class Checker {
 
     }
 }
+
+struct LoginInspector: LoginViewControllerDelegate {
+    func checkLogin(what controller: LoginViewController,
+                    login : String) -> Bool {
+        return Checker.cheker.checkLogin(login: login)
+        
+    }
+    
+    func checkPassword(what controller: LoginViewController,
+                       password : String) -> Bool {
+        return Checker.cheker.checkPassword(password: password)
+    }
+        
+}
