@@ -11,7 +11,7 @@ import UIKit
 protocol LoginViewControllerDelegate{
     func checkLogin(what controller: LoginViewController,
         login : String) -> Bool
-
+ 
     func checkPassword(what controller: LoginViewController,
                    password : String) -> Bool
  }

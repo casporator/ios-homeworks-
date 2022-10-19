@@ -96,7 +96,7 @@ class LoginViewController : UIViewController {
         return login
     }()
     // объявляю алертконтроллер (в случае неверного логина)
-    let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login", preferredStyle: .alert)
+    let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .alert)
     
     
     
@@ -189,7 +189,7 @@ class LoginViewController : UIViewController {
         scrollView.addSubview(stackViewTextFields)
         scrollView.addSubview(loginButton)
         
-        alertPassword.addAction(UIAlertAction(title: "Re-Login", style: .cancel))
+        alertPassword.addAction(UIAlertAction(title: "Try again", style: .cancel))
         
     }
     
