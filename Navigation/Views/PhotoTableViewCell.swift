@@ -101,6 +101,7 @@ extension PhotoTableViewCell : UICollectionViewDataSource, UICollectionViewDeleg
         cell.setup(name: "\(photoData[indexPath.item])")
         cell.layer.cornerRadius = 6 //устанавливаю закругление согласно макету
         cell.clipsToBounds = true
+        cell.backgroundColor = .clear
         
         return cell
     }

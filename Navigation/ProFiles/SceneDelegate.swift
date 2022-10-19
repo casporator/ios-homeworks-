@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: Внедрите зависимость контроллера LoginViewController от LoginInspector:
         let loginController = LoginViewController()
-        loginController.loginDelegate = LoginInspector()
+        loginController.loginDelegate = MyLoginFactory().makeLoginInspector()
         
         loginTabNavigationController = UINavigationController.init(rootViewController: loginController)
         

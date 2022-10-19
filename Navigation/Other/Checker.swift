@@ -15,8 +15,8 @@ protocol LoginViewControllerDelegate{
 class Checker {
     static let cheker = Checker()
     
-    private let login = "1234"
-    private let password = "1234"
+    private let login = "pipin@gmail.com"
+    private let password = "12345678"
     
     func checkLogin(login: String, password: String) -> Bool {
         self.login == login && self.password == password ? true : false
@@ -36,3 +36,12 @@ struct LoginInspector: LoginViewControllerDelegate {
 }
         
 
+protocol LoginFactory {
+    func makeLoginInspector() -> LoginInspector
+}
+
+struct MyLoginFactory : LoginFactory {
+    func makeLoginInspector() -> LoginInspector {
+        return LoginInspector()
+    }
+}
