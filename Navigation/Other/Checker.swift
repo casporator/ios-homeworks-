@@ -13,7 +13,7 @@ protocol LoginViewControllerDelegate{
 }
 
 class Checker {
-    static let cheker = Checker()
+    static let shared = Checker()
     
     private let login = "pipin@gmail.com"
     private let password = "12345678"
@@ -30,7 +30,7 @@ class Checker {
 struct LoginInspector: LoginViewControllerDelegate {
     func checkLogin(controller: LoginViewController,
                     login: String, password: String) -> Bool {
-        return Checker.cheker.checkLogin(login: login, password: password)
+        return Checker.shared.checkLogin(login: login, password: password)
         
     }
 }
