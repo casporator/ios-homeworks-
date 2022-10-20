@@ -17,19 +17,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-                
-        // 1. создаем TabBarController
-        let tabBarController = UITabBarController()
+            
+       
         
-        // 2. создаем 2 контейнера и присваиваем им нужные представления ViewController
+       
+        let tabBarController = UITabBarController()
         
         feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
-        loginTabNavigationController = UINavigationController.init(rootViewController: LoginViewController())
+        
+        //MARK: Внедрите зависимость контроллера LoginViewController от LoginInspector:
+        let loginController = LoginViewController()
+        loginController.loginDelegate = MyLoginFactory().makeLoginInspector()
+        
+        loginTabNavigationController = UINavigationController.init(rootViewController: loginController)
         
         tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController]
         
-        // настраиваем кнопки таббара
+       
         let item1 = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.circle"), tag: 1)
         let item2 = UITabBarItem(title: "Лента", image: UIImage(systemName: "rectangle.3.group.bubble.left"), tag: 0)
         
@@ -38,8 +43,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginTabNavigationController.tabBarItem = item1
         
         
-        
-        // визуальные настройки таббара
         UITabBar.appearance().tintColor = .systemBlue
         UITabBar.appearance().backgroundColor = .white
         
