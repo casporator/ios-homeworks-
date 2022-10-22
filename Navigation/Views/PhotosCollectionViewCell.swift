@@ -38,8 +38,13 @@ class PhotosCollectionViewCell : UICollectionViewCell {
         ])
     }
     
-    func setup(name: String) {
+   func setup(name: String) {
         photoImage.image = UIImage(named: name)
+    }
+  
+   
+    func setupImagePublisher(image: UIImage){
+        photoImage.image = image
     }
 }
 

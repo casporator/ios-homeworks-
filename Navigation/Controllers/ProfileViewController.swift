@@ -223,7 +223,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
             let photosViewController = PhotosViewController()
-            navigationController?.pushViewController(photosViewController, animated: false)
+            navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
    
@@ -232,7 +232,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             
             return PhotoTableViewCell()
             
-        }else if indexPath.section == 1 {
+        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "indentPostTableCell", for: indexPath) as? PostTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "indentDefaultTableCell", for: indexPath)
         

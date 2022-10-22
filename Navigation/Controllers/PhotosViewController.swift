@@ -7,8 +7,12 @@
 
 import Foundation
 import UIKit
+import iOSIntPackage // импортирую расширение iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber { //подписываюсь на расширение
+ 
+    //Создайте для PhotosViewController экземпляр класса ImagePublisherFacade
+    var imagePublisher = ImagePublisherFacade()
     
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -40,7 +44,17 @@ class PhotosViewController: UIViewController {
         
         addViews()
         addConstraints()
+        
+       //подпишите ваш класс PhotosViewController на изменения, которые будет генерировать этот publisher:
+        imagePublisher.subscribe(self)
+        
+       // Запустите сценарий наполнения коллекции изображениями через метод addImagesWithTimer
+        imagePublisher.addImagesWithTimer(time: 0.5, repeat: 15)
+        
     }
+    
+    
+    
 
     func addViews(){
         view.addSubview(collectionView)
@@ -58,7 +72,8 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoData.count
+        //return photoData.count
+        return photoInSection
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,7 +82,9 @@ extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDel
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        cell.setup(name: "\(photoData[indexPath.item])")
+       // cell.setup(name: itemImageMassive[indexPath.row])
+        cell.setupImagePublisher(image:  photoCollection[indexPath.row])
+        
       return cell
     }
     
@@ -77,4 +94,12 @@ extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
-
+extension PhotosViewController {
+    func receive(images: [UIImage]) {
+        
+        photoCollection = images
+        photoInSection = images.count
+        collectionView.reloadData()
+    }
+    
+}
