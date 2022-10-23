@@ -55,13 +55,11 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber { //под�
     
 // отменяю подписку при уходе из photo gallery
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        if self.isMovingFromParent {
-            imagePublisher.removeSubscription(for: self)
-            imagePublisher.rechargeImageLibrary()
+           super.viewWillDisappear(animated)
+                 
+           imagePublisher.removeSubscription(for: self)
+           imagePublisher.rechargeImageLibrary()
         }
-    }
   
     
     func addViews(){
