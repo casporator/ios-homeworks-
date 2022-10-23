@@ -12,6 +12,7 @@ class LoginViewController : UIViewController {
     //Для класса LoginViewController сделайте свойство loginDelegate
     var loginDelegate : LoginViewControllerDelegate?
     
+
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -96,7 +97,8 @@ class LoginViewController : UIViewController {
         return login
     }()
     // объявляю алертконтроллер (в случае неверного логина)
-    let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .alert)
+    let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .actionSheet)
+  
     
     
     
@@ -109,12 +111,14 @@ class LoginViewController : UIViewController {
         addViews()
         addConstraints()
         setupGestures()
-        
-    }
+       
+   }
+
     
     // MARK: клавиатура
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+      
         
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
@@ -144,6 +148,10 @@ class LoginViewController : UIViewController {
         }
     }
     
+
+    
+   
+    
     //MARK: Функция тапа клавиатуры
      func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
@@ -159,6 +167,7 @@ class LoginViewController : UIViewController {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+   
     //MARK: Функция нажатия кнопки Login
     @objc func pressLogin() {
      
@@ -177,11 +186,14 @@ class LoginViewController : UIViewController {
             navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             self.present(alertPassword, animated: true, completion: nil)
+            self.view.applyBlurEffect()
+        
         }
     }
     func addViews(){
+  
         view.addSubview(scrollView)
-        
+     
         stackViewTextFields.addArrangedSubview(emailTextField)
         stackViewTextFields.addArrangedSubview(line)
         stackViewTextFields.addArrangedSubview(passwordTextField)
@@ -189,7 +201,12 @@ class LoginViewController : UIViewController {
         scrollView.addSubview(stackViewTextFields)
         scrollView.addSubview(loginButton)
         
-        alertPassword.addAction(UIAlertAction(title: "Try again", style: .cancel))
+        alertPassword.addAction(UIAlertAction(title: "Forgot password", style: .default, handler: { action in
+            self.view.removeBlurEffect() }))
+        alertPassword.addAction(UIAlertAction(title: "Try again", style: .cancel, handler: { action in
+            self.view.removeBlurEffect() }))
+      
+      
         
     }
     
