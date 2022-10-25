@@ -10,7 +10,7 @@ import UIKit
 
 final class CustomButton: UIButton {
     
-    var buttonAction: () -> Void = {}
+    var buttonAction: () -> Void = {} // замыкане в которое буду передавать действие
     
     @objc private func buttonTapped(){
         buttonAction()

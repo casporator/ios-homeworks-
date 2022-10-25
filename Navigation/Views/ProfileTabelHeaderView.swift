@@ -55,18 +55,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusLbl
     }()
     
-    private let textField : UITextField = {
-        let txtField = UITextField()
-        txtField.font = UIFont(name: "regular", size: 15.0)
-        txtField.placeholder = " Enter you status"
-        txtField.backgroundColor = .white
-        txtField.translatesAutoresizingMaskIntoConstraints = false
-        txtField.layer.borderWidth = 1
-        txtField.layer.cornerRadius = 12
-        txtField.layer.borderColor = UIColor.black.cgColor
-        txtField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        return txtField
-    }()
+    private let textField = CustomTextField(placeholder: " Enter you status", textAlignment: .left)
     
     
     var statusText: String = ""
@@ -79,6 +68,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addGestures()
         addNotifications()
         addButtonActions()
+        statusTextChanged()
         
     }
     required init?(coder: NSCoder) {
@@ -102,12 +92,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
           }
     }
 }
-    @objc func statusTextChanged(_ textField: UITextField){
-        if let text = textField.text {
-            statusText = text
+    
+    func statusTextChanged(){
+        textField.textFieldAction = { [self] in
+            if let text = textField.text {
+                statusText = text
+            }
         }
     }
-
+    
 func addConstraints(){
     
     image.snp.makeConstraints { (make) -> Void in
