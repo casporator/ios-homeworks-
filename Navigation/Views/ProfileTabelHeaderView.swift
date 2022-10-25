@@ -34,20 +34,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         return name
     }()
-    
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 14
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+   
+    private let button: CustomButton = {
+        let button = CustomButton(title: "Show status", maskToBounds: false)
+        button.layer.shadowOffset = CGSize(width: 4, height: 4) //добавляем тень
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
         return button
     }()
     
@@ -62,18 +55,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusLbl
     }()
     
-    private let textField : UITextField = {
-        let txtField = UITextField()
-        txtField.font = UIFont(name: "regular", size: 15.0)
-        txtField.placeholder = " Enter you status"
-        txtField.backgroundColor = .white
-        txtField.translatesAutoresizingMaskIntoConstraints = false
-        txtField.layer.borderWidth = 1
-        txtField.layer.cornerRadius = 12
-        txtField.layer.borderColor = UIColor.black.cgColor
-        txtField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        return txtField
-    }()
+    private let textField = CustomTextField(placeholder: " Enter you status", textAlignment: .left)
     
     
     var statusText: String = ""
@@ -85,7 +67,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addConstraints()
         addGestures()
         addNotifications()
-        
+        addButtonActions()
+        statusTextChanged()
         
     }
     required init?(coder: NSCoder) {
@@ -101,20 +84,23 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     
-    @objc func buttonPressed() {
-        
-        if statusText != "" {
-            statusLabel.text = statusText
-            print (statusText)
+    func addButtonActions() {
+        button.buttonAction = {
+            if self.statusText != "" {
+                self.statusLabel.text = self.statusText
+                self.textField.text = ""
+          }
+    }
+}
+    
+    func statusTextChanged(){
+        textField.textFieldAction = { [self] in
+            if let text = textField.text {
+                statusText = text
+            }
         }
     }
     
-    @objc func statusTextChanged(_ textField: UITextField){
-        if let text = textField.text {
-            statusText = text
-        }
-    }
-   
 func addConstraints(){
     
     image.snp.makeConstraints { (make) -> Void in

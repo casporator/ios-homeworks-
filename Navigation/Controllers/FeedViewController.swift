@@ -11,62 +11,111 @@ class FeedViewController: UIViewController {
     // Mark: создание обьекта Post
     var postTitle = HeadPost(title: "Пост")
     
-        let button = UIButton()
-        let secondButton = UIButton()
-        let stackView = UIStackView()
+    private let textField: CustomTextField = {
+      let field =  CustomTextField(placeholder: "Введите секретное слово ")
+        field.isSecureTextEntry = true 
+        field.autocapitalizationType = .none
+        
+        return field
+    }()
+    
+   private let button: CustomButton = {
+        let button = CustomButton(title: " читать пост #1")
+        button.layer.borderColor = UIColor.white.cgColor // этим кнопкам добавляю рамку
+        button.layer.borderWidth = 2
+        return button
+    }()
+       
+    private let secondButton: CustomButton = {
+       let button = CustomButton(title: " читать пост #2")
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 2
+      return button
+    }()
+    
+    private let checkGuessButton = CustomButton(title: "Проверить секретное слово")
+    
+    private let resultButton: CustomButton = CustomButton(title: "Проверка", backgroundColor: .systemYellow)
+        
+    private let stackView: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .equalCentering
+        stack.alignment = .center
+        stack.spacing = 10.0
+        stack.toAutoLayout()
+       
+        return stack
+    }()
        
     override func viewDidLoad() {
      super.viewDidLoad()
             
         view.backgroundColor = .systemIndigo
-        // self.title = "Лента"
+    
         view.addSubview(stackView)
+        addView()
         navBarCustomization()
-      
-        button.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        button.setTitle(" читать пост ", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Hannotate SC Bold", size: 30)
-        //button.setImage(UIImage(systemName: "book.circle"), for: .normal)
-        //button.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
-        button.backgroundColor = .systemYellow
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2
-        button.addTarget(self, action: #selector(goToPostController), for: .touchUpInside)
+        setConstraints()
+        addButtunAction()
+    }
         
-        secondButton.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        secondButton.setTitle(" читать пост ", for: .normal)
-        secondButton.titleLabel?.font = UIFont(name: "Hannotate SC Bold", size: 30)
-        //secondButton.setImage(UIImage(systemName: "book.circle"), for: .normal)
-        //secondButton.setImage(UIImage(systemName: "book.circle.fill"), for: .highlighted)
-        secondButton.backgroundColor = .systemYellow
-        secondButton.setTitleColor(UIColor.black, for: .normal)
-        secondButton.layer.cornerRadius = 8
-        secondButton.layer.borderColor = UIColor.white.cgColor
-        secondButton.layer.borderWidth = 2
-        secondButton.addTarget(self, action: #selector(goToPostController), for: .touchUpInside)
-       
-        stackView.axis = .vertical
-        stackView.distribution = .equalCentering
-        stackView.alignment = .center
-        stackView.spacing = 10.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(button)
-        stackView.addArrangedSubview(secondButton)
-       
+         
+    func addView(){
+            stackView.addArrangedSubview(button)
+            stackView.addArrangedSubview(secondButton)
+            stackView.addArrangedSubview(textField)
+            stackView.addArrangedSubview(checkGuessButton)
+            stackView.addArrangedSubview(resultButton)
+    }
+        
+    func setConstraints(){
        NSLayoutConstraint.activate([
-            
+           button.widthAnchor.constraint(equalToConstant: 250),
+           button.heightAnchor.constraint(equalToConstant: 40),
+        
+           secondButton.widthAnchor.constraint(equalToConstant: 250),
+           secondButton.heightAnchor.constraint(equalToConstant: 40),
+        
+           textField.heightAnchor.constraint(equalToConstant: 50),
+           textField.widthAnchor.constraint(equalToConstant: 300),
+           
+           resultButton.widthAnchor.constraint(equalToConstant: 100),
+           resultButton.heightAnchor.constraint(equalToConstant: 40),
+           
+           checkGuessButton.widthAnchor.constraint(equalToConstant: 250),
+           checkGuessButton.heightAnchor.constraint(equalToConstant: 40),
+        
            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor) ])
+           stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+       ])
     }
 
-    // Mark: функция нажатия на кнопку
-    @objc func goToPostController() {
+    // Mark: функция нажатия на кнопки
+     func addButtunAction() {
+       
+         [button, secondButton].forEach{
+            ($0).buttonAction = { [self] in
         let detailController = PostViewController()
         detailController.titlePost = postTitle.title //передаём наш пост в виде заголовка на PostView
         navigationController?.pushViewController(detailController, animated: false)
     }
+  }
+
+         checkGuessButton.buttonAction = { [self] in
+             let inputWord = textField.text ?? ""
+             let result: Bool = FeedModel().check(word: inputWord)
+             if result == true {
+                 resultButton.setTitle("Верно", for: .normal)
+                 resultButton.backgroundColor = .systemGreen
+                 textField.text = ""
+             } else {
+                 resultButton.setTitle("Не верно", for: .normal)
+                 resultButton.backgroundColor = .systemRed
+                 textField.text = ""
+             }
+         }
+}
         
         func navBarCustomization () {
             let appearance = UINavigationBarAppearance()
@@ -79,11 +128,11 @@ class FeedViewController: UIViewController {
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
             self.navigationItem.title = "Лента"
             
-            // Mark: добавляю кнопку справа нав бара (это так, для саморазвития)
+            // Mark: добавляю кнопку справа нав бара
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
             self.navigationItem.rightBarButtonItem?.tintColor = .black
          
         
-        }
+        
     }
-
+}

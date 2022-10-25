@@ -78,24 +78,16 @@ class LoginViewController : UIViewController {
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: password.frame.height))
         password.leftViewMode = .always
         password.toAutoLayout()
-        password.isSecureTextEntry = true //делаю скрытый ввод текста
+        password.isSecureTextEntry = true 
         password.autocapitalizationType = .none
       
         return password
     }()
     
     //MARK: добавляю кнопку логин
-    private lazy var loginButton: UIButton = {
-        let login = UIButton()
-        login.setTitle("Log In", for: .normal)
-        login.setTitleColor(UIColor.white, for: .normal)
-        login.setTitleColor(UIColor.black, for: .highlighted)
-        login.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage())
-        login.layer.cornerRadius = 10
-        login.toAutoLayout()
-        login.addTarget(self, action: #selector(pressLogin), for: .touchUpInside)
-        return login
-    }()
+    private lazy var loginButton = CustomButton(title: "Log In", backgroundColor: UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage()), cornerRadius: 10)
+    
+
     // объявляю алертконтроллер (в случае неверного логина)
     let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .actionSheet)
   
@@ -111,6 +103,7 @@ class LoginViewController : UIViewController {
         addViews()
         addConstraints()
         setupGestures()
+        addButtonActions()
        
    }
 
@@ -149,9 +142,6 @@ class LoginViewController : UIViewController {
     }
     
 
-    
-   
-    
     //MARK: Функция тапа клавиатуры
      func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
@@ -169,7 +159,9 @@ class LoginViewController : UIViewController {
     
    
     //MARK: Функция нажатия кнопки Login
-    @objc func pressLogin() {
+    func addButtonActions() {
+
+        loginButton.buttonAction = { [self] in
      
         let incomingLogin = emailTextField.text
         let incomingPassword = passwordTextField.text
@@ -187,9 +179,12 @@ class LoginViewController : UIViewController {
         } else {
             self.present(alertPassword, animated: true, completion: nil)
             self.view.applyBlurEffect()
-        
+            
         }
+      }
     }
+    
+    
     func addViews(){
   
         view.addSubview(scrollView)
