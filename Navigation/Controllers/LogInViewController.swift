@@ -78,7 +78,7 @@ class LoginViewController : UIViewController {
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: password.frame.height))
         password.leftViewMode = .always
         password.toAutoLayout()
-        password.isSecureTextEntry = true //делаю скрытый ввод текста
+        password.isSecureTextEntry = true 
         password.autocapitalizationType = .none
       
         return password

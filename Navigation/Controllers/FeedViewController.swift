@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
     
     private let textField: CustomTextField = {
       let field =  CustomTextField(placeholder: "Введите секретное слово ")
-        field.isSecureTextEntry = true //делаю скрытый ввод текста
+        field.isSecureTextEntry = true 
         field.autocapitalizationType = .none
         
         return field
@@ -83,18 +83,18 @@ class FeedViewController: UIViewController {
            resultButton.widthAnchor.constraint(equalToConstant: 100),
            resultButton.heightAnchor.constraint(equalToConstant: 40),
            
-           
            checkGuessButton.widthAnchor.constraint(equalToConstant: 250),
            checkGuessButton.heightAnchor.constraint(equalToConstant: 40),
         
            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor) ])
+           stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+       ])
     }
 
     // Mark: функция нажатия на кнопки
      func addButtunAction() {
        
-         [button,secondButton].forEach{
+         [button, secondButton].forEach{
             ($0).buttonAction = { [self] in
         let detailController = PostViewController()
         detailController.titlePost = postTitle.title //передаём наш пост в виде заголовка на PostView
@@ -103,8 +103,8 @@ class FeedViewController: UIViewController {
   }
 
          checkGuessButton.buttonAction = { [self] in
-        let inputWord = textField.text ?? ""
-        let result: Bool = FeedModel().check(word: inputWord)
+             let inputWord = textField.text ?? ""
+             let result: Bool = FeedModel().check(word: inputWord)
              if result == true {
                  resultButton.setTitle("Верно", for: .normal)
                  resultButton.backgroundColor = .systemGreen
@@ -112,9 +112,9 @@ class FeedViewController: UIViewController {
              } else {
                  resultButton.setTitle("Не верно", for: .normal)
                  resultButton.backgroundColor = .systemRed
-                textField.text = ""
-          }
-    }
+                 textField.text = ""
+             }
+         }
 }
         
         func navBarCustomization () {

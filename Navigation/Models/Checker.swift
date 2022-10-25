@@ -15,8 +15,8 @@ protocol LoginViewControllerDelegate{
 class Checker {
     static let shared = Checker()
     
-    private let login = "pipin@gmail.com"
-    private let password = "12345678"
+    private let login = "1"
+    private let password = "1"
     
     func checkLogin(login: String, password: String) -> Bool {
         self.login == login && self.password == password ? true : false
