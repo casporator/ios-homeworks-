@@ -26,7 +26,6 @@
 		BB2D2D8028EF40BF00742E1E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D6A28EF40BF00742E1E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB2D2D8828EF40D900742E1E /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* Posts.swift */; };
 		BB576B2728F5E3E5008922E8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB576B2628F5E3E5008922E8 /* SnapKit */; };
-		BB576B2A28F61D3F008922E8 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = BB576B2928F61D3F008922E8 /* iOSIntPackage */; };
 		BBAB864328B3B7D400BB951A /* ProfileTabelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */; };
 		BBAB864728B4448100BB951A /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864628B4448100BB951A /* Struct.swift */; };
 		BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864928C3630C00BB951A /* LogInViewController.swift */; };
@@ -39,6 +38,10 @@
 		BBD3DD0629075B0600EC8B8F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD3DD0529075B0600EC8B8F /* CustomButton.swift */; };
 		BBD3DD08290810AA00EC8B8F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD3DD07290810AA00EC8B8F /* CustomTextField.swift */; };
 		BBD3DD0C29083DD500EC8B8F /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD3DD0B29083DD500EC8B8F /* FeedModel.swift */; };
+		BBE78331290EBA2F008F56A5 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = BBE78330290EBA2F008F56A5 /* iOSIntPackage */; };
+		BBE78334290F0E4B008F56A5 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78333290F0E4B008F56A5 /* LoginViewControllerDelegate.swift */; };
+		BBE78336290F0E96008F56A5 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78335290F0E96008F56A5 /* LoginInspector.swift */; };
+		BBE78338290F0F32008F56A5 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78337290F0F32008F56A5 /* LoginFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +113,9 @@
 		BBD3DD0529075B0600EC8B8F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BBD3DD07290810AA00EC8B8F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		BBD3DD0B29083DD500EC8B8F /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		BBE78333290F0E4B008F56A5 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		BBE78335290F0E96008F56A5 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		BBE78337290F0F32008F56A5 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,10 +123,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB576B2A28F61D3F008922E8 /* iOSIntPackage in Frameworks */,
 				BB2D2D7F28EF40BF00742E1E /* StorageService.framework in Frameworks */,
 				BB576B2728F5E3E5008922E8 /* SnapKit in Frameworks */,
 				BB28D52F2902C7230049BB92 /* iOSIntPackage in Frameworks */,
+				BBE78331290EBA2F008F56A5 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +171,7 @@
 		BB15976E28AA704200BBA453 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				BBE78332290F0D93008F56A5 /* Login */,
 				BB2D2D8928EF540000742E1E /* ProFiles */,
 				BBAFDEE228C923DC00C4177C /* Models */,
 				BBAFDEE128C923BA00C4177C /* Controllers */,
@@ -222,7 +229,6 @@
 				BB15978328AA75DE00BBA453 /* FeedViewController.swift */,
 				BB15978928ABDB9C00BBA453 /* InfoViewController.swift */,
 				BB15978528AA75F100BBA453 /* ProfileViewController.swift */,
-				BBAB864928C3630C00BB951A /* LogInViewController.swift */,
 				BBAFDEF628CD4F9400C4177C /* PhotosViewController.swift */,
 			);
 			path = Controllers;
@@ -235,7 +241,6 @@
 				BBAB864628B4448100BB951A /* Struct.swift */,
 				BBAFDEF028CD476800C4177C /* Photos.swift */,
 				BB28D52028FACC980049BB92 /* User.swift */,
-				BB28D52B28FF45E90049BB92 /* Checker.swift */,
 				BBD3DD0B29083DD500EC8B8F /* FeedModel.swift */,
 			);
 			path = Models;
@@ -248,6 +253,18 @@
 				BBD3DD07290810AA00EC8B8F /* CustomTextField.swift */,
 			);
 			path = CustomItems;
+			sourceTree = "<group>";
+		};
+		BBE78332290F0D93008F56A5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB864928C3630C00BB951A /* LogInViewController.swift */,
+				BBE78333290F0E4B008F56A5 /* LoginViewControllerDelegate.swift */,
+				BB28D52B28FF45E90049BB92 /* Checker.swift */,
+				BBE78335290F0E96008F56A5 /* LoginInspector.swift */,
+				BBE78337290F0F32008F56A5 /* LoginFactory.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,8 +298,8 @@
 			name = Navigation;
 			packageProductDependencies = (
 				BB576B2628F5E3E5008922E8 /* SnapKit */,
-				BB576B2928F61D3F008922E8 /* iOSIntPackage */,
 				BB28D52E2902C7230049BB92 /* iOSIntPackage */,
+				BBE78330290EBA2F008F56A5 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = BB15976C28AA704200BBA453 /* Navigation.app */;
@@ -358,8 +375,8 @@
 			mainGroup = BB15976328AA704200BBA453;
 			packageReferences = (
 				BB576B2528F5E3E5008922E8 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				BB28D52D2902C7230049BB92 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				BBE7832F290EBA2F008F56A5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = BB15976D28AA704200BBA453 /* Products */;
 			projectDirPath = "";
@@ -415,10 +432,13 @@
 				BBAFDEF528CD4C2C00C4177C /* PhotosCollectionViewCell.swift in Sources */,
 				BBAFDEF328CD4A3100C4177C /* PhotoTableViewCell.swift in Sources */,
 				BB28D52C28FF45E90049BB92 /* Checker.swift in Sources */,
+				BBE78334290F0E4B008F56A5 /* LoginViewControllerDelegate.swift in Sources */,
 				BB15978A28ABDB9C00BBA453 /* InfoViewController.swift in Sources */,
 				BB15978628AA75F100BBA453 /* ProfileViewController.swift in Sources */,
 				BB15978428AA75DE00BBA453 /* FeedViewController.swift in Sources */,
+				BBE78338290F0F32008F56A5 /* LoginFactory.swift in Sources */,
 				BBAFDED428C6A07500C4177C /* extension.swift in Sources */,
+				BBE78336290F0E96008F56A5 /* LoginInspector.swift in Sources */,
 				BB15977228AA704200BBA453 /* SceneDelegate.swift in Sources */,
 				BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */,
 				BBAFDEE628C92B5000C4177C /* PostTableViewCell.swift in Sources */,
@@ -805,12 +825,12 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		BBE7832F290EBA2F008F56A5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 3.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -826,9 +846,9 @@
 			package = BB576B2528F5E3E5008922E8 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		BB576B2928F61D3F008922E8 /* iOSIntPackage */ = {
+		BBE78330290EBA2F008F56A5 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = BBE7832F290EBA2F008F56A5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */

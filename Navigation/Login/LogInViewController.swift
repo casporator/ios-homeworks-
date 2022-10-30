@@ -10,8 +10,8 @@ import UIKit
 class LoginViewController : UIViewController {
     
     //Для класса LoginViewController сделайте свойство loginDelegate
-    var loginDelegate : LoginViewControllerDelegate?
-    
+   // var loginDelegate : LoginViewControllerDelegate?
+    var loginFactory: MyLoginFactory?
 
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
@@ -162,17 +162,16 @@ class LoginViewController : UIViewController {
     func addButtonActions() {
 
         loginButton.buttonAction = { [self] in
-     
-        let incomingLogin = emailTextField.text
-        let incomingPassword = passwordTextField.text
-        
+    
 #if DEBUG
         let loginingUser = TestUserService(incomingUser: User(fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
 #else
         let loginingUser = CurrentUserService(incomingUser: User(fullName: "Пипин", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
 #endif
-        if loginDelegate?.checkLogin(controller: self, login: incomingLogin ?? "", password: incomingPassword ?? "") == true {
-            
+            if 
+               let inspector = loginFactory?.produceLoginInspector,
+               inspector().checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
+               // let profileVC = ProfileViewController(userService: userService, userName: username )
             let profileViewController = ProfileViewController()
             profileViewController.user1 = loginingUser.incomingUser
             navigationController?.pushViewController(profileViewController, animated: true)
