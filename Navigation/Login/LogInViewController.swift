@@ -7,19 +7,19 @@
 
 import UIKit
 
-extension LoginViewController {
-    enum Event {
-        case login
-    }
-}
-
 class LoginViewController : UIViewController {
+    var loginDelegate: LoginViewControllerDelegate?
+    let coordinator: ProfileCoordinator
     
-    //Для класса LoginViewController сделайте свойство loginDelegate
-    var loginDelegate : LoginViewControllerDelegate?
-  //  var loginFactory: MyLoginFactory?
-    var didSentEventClosure: ((LoginViewController.Event) -> Void)?
-
+    init(coordinator: ProfileCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -183,11 +183,11 @@ class LoginViewController : UIViewController {
             if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
                 
             //    self.navigationController?.pushViewController(profileVC, animated: true)
-                didSentEventClosure?(.login)
+                
                
         //  navigationController?.pushViewController(profileViewController, animated: true)
                
-              
+                coordinator.startView()
                 
         } else {
             self.present(alertPassword, animated: true, completion: nil)

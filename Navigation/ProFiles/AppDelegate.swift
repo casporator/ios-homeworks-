@@ -10,22 +10,26 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        let mainCoordinator: MainCoordinator = MainCoordinatorImp()
         
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-       
+        UITabBar.appearance().tintColor = .systemBlue
+        UITabBar.appearance().barTintColor = .systemGray
+        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().layer.borderColor = UIColor.darkGray.cgColor
+        UITabBar.appearance().layer.borderWidth = 1
+        UITabBar.appearance().layer.masksToBounds = true
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = mainCoordinator.startApplication()
+        window?.makeKeyAndVisible()
+        
+        return true
+        
     }
 
 

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    
+ 
     struct ViewModel {
         let autor: String
         let descriptionText: String
@@ -18,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
         let image: UIImage?
 
     }
-
+  
     private lazy var autor : UILabel = {
         let label = UILabel()
         label.text = "Svinki.ru"
@@ -92,7 +92,7 @@ class PostTableViewCell: UITableViewCell {
         views.text = viewModel.views
         img.image = viewModel.image
     }
-    
+
     func addConstraints(){
         NSLayoutConstraint.activate([
             autor.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),

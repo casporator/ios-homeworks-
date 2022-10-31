@@ -14,8 +14,10 @@ import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     let profileViewModel: ProfileViewModel
+    let photoCoordinator: PhotoCoordinator
     
-    init(profileViewModel: ProfileViewModel) {
+    init(photoCoordinator: PhotoCoordinator, profileViewModel: ProfileViewModel) {
+        self.photoCoordinator = photoCoordinator
         self.profileViewModel = profileViewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -80,7 +82,8 @@ class ProfileViewController: UIViewController {
        
         view.addSubviews(tableView, hiddenView, duplicateAvatar, xmarkView)
         addConstraints()
-        tableView.reloadData()
+        profileViewModel.setUser()
+        profileViewModel.setPosts()
         addGestures()
         addNotification()
         hideKeyboardWhenTappedAround()
@@ -228,8 +231,9 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
-            let photosViewController = PhotosViewController()
-            navigationController?.pushViewController(photosViewController, animated: true)
+            // let photosViewController = PhotosViewController()
+            //navigationController?.pushViewController(photosViewController, animated: true)
+            photoCoordinator.showView()
         }
     }
    
@@ -262,7 +266,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             views: "Views: \(profileViewModel.postsData[indexPath.row].views)",
             image: post.image
         )
-        cell.setup(with: PostModel)
+        cell.setup(with: PostTableViewCell.ViewModel)
         
         return cell
             

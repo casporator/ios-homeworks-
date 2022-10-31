@@ -8,37 +8,13 @@
 import Foundation
 import UIKit
 
-import UIKit
-
-// MARK: Координатор
-protocol Coordinator: AnyObject {
-    
-    var finishDelegate: CoordinatorFinishDelegate? { get set }
-    var navigationController: UINavigationController { get set }
-    var childCoordinators: [Coordinator] { get set }
-    var type: CoordinatorType { get }
-    
-  
-    func start()
-    func finish()
-    
-    init(_ navigationController: UINavigationController)
-    
+protocol MainCoordinator {
+    func startApplication() -> UIViewController
 }
 
-extension Coordinator {
-    func finish() {
-        childCoordinators.removeAll()
-        finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+class MainCoordinatorImp: MainCoordinator {
+    func startApplication() -> UIViewController {
+        return TabBarController()
     }
-}
-
-protocol CoordinatorFinishDelegate: AnyObject {
-    func coordinatorDidFinish(childCoordinator: Coordinator)
-}
-
-// MARK: Типы координатора
-enum CoordinatorType {
-    case app, login, tab
 }
 

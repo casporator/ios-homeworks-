@@ -8,7 +8,21 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    // Mark: создание обьекта Post
+    
+    
+    let coordinator: FeedCoordinator
+    
+    init(coordinator: FeedCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     var postTitle = HeadPost(title: "Пост")
     
     private let textField: CustomTextField = {

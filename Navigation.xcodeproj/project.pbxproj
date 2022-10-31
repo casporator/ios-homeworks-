@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BB15977028AA704200BBA453 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15976F28AA704200BBA453 /* AppDelegate.swift */; };
-		BB15977228AA704200BBA453 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15977128AA704200BBA453 /* SceneDelegate.swift */; };
 		BB15977928AA704200BBA453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB15977828AA704200BBA453 /* Assets.xcassets */; };
 		BB15977C28AA704200BBA453 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB15977A28AA704200BBA453 /* LaunchScreen.storyboard */; };
 		BB15978428AA75DE00BBA453 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15978328AA75DE00BBA453 /* FeedViewController.swift */; };
@@ -42,15 +41,16 @@
 		BBE78336290F0E96008F56A5 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78335290F0E96008F56A5 /* LoginInspector.swift */; };
 		BBE78338290F0F32008F56A5 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78337290F0F32008F56A5 /* LoginFactory.swift */; };
 		BBE7834D290F4FA9008F56A5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7834C290F4FA9008F56A5 /* Coordinator.swift */; };
-		BBE7834F290F4FEB008F56A5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7834E290F4FEB008F56A5 /* AppCoordinator.swift */; };
-		BBE78351290F5024008F56A5 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78350290F5024008F56A5 /* LoginCoordinator.swift */; };
-		BBE78353290F50B4008F56A5 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78352290F50B4008F56A5 /* TabBarCoordinator.swift */; };
-		BBE78356290F51FB008F56A5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78355290F51FB008F56A5 /* TabBarController.swift */; };
+		BBE7834F290F4FEB008F56A5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7834E290F4FEB008F56A5 /* ProfileCoordinator.swift */; };
+		BBE78351290F5024008F56A5 /* PhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78350290F5024008F56A5 /* PhotoCoordinator.swift */; };
+		BBE78353290F50B4008F56A5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78352290F50B4008F56A5 /* TabBar.swift */; };
 		BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */; };
 		BBE7835D290F7343008F56A5 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835C290F7343008F56A5 /* TestUserService.swift */; };
 		BBE7835F29100B27008F56A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835E29100B27008F56A5 /* UserService.swift */; };
 		BBE78363291016A1008F56A5 /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* PostsModel.swift */; };
 		BBE7836629101700008F56A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836529101700008F56A5 /* ProfileViewModel.swift */; };
+		BBE7836829106B3C008F56A5 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836729106B3C008F56A5 /* FeedCoordinator.swift */; };
+		BBE7836A29106BA7008F56A5 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836929106BA7008F56A5 /* Factory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,6 @@
 /* Begin PBXFileReference section */
 		BB15976C28AA704200BBA453 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB15976F28AA704200BBA453 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB15977128AA704200BBA453 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BB15977828AA704200BBA453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB15977B28AA704200BBA453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB15977D28AA704200BBA453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,14 +125,15 @@
 		BBE78335290F0E96008F56A5 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		BBE78337290F0F32008F56A5 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		BBE7834C290F4FA9008F56A5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		BBE7834E290F4FEB008F56A5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		BBE78350290F5024008F56A5 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		BBE78352290F50B4008F56A5 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
-		BBE78355290F51FB008F56A5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BBE7834E290F4FEB008F56A5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		BBE78350290F5024008F56A5 /* PhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCoordinator.swift; sourceTree = "<group>"; };
+		BBE78352290F50B4008F56A5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		BBE7835C290F7343008F56A5 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		BBE7835E29100B27008F56A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BBE7836529101700008F56A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		BBE7836729106B3C008F56A5 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		BBE7836929106BA7008F56A5 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +191,6 @@
 			children = (
 				BBE78360291015DD008F56A5 /* Profile MVVM */,
 				BBE78357290F7035008F56A5 /* UserData */,
-				BBE78354290F51D4008F56A5 /* TabBar */,
 				BBE7834B290F4F78008F56A5 /* Coordinators */,
 				BBE78332290F0D93008F56A5 /* Login */,
 				BB2D2D8928EF540000742E1E /* ProFiles */,
@@ -226,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				BB15976F28AA704200BBA453 /* AppDelegate.swift */,
-				BB15977128AA704200BBA453 /* SceneDelegate.swift */,
 			);
 			path = ProFiles;
 			sourceTree = "<group>";
@@ -288,20 +286,14 @@
 		BBE7834B290F4F78008F56A5 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				BBE78352290F50B4008F56A5 /* TabBar.swift */,
 				BBE7834C290F4FA9008F56A5 /* Coordinator.swift */,
-				BBE7834E290F4FEB008F56A5 /* AppCoordinator.swift */,
-				BBE78350290F5024008F56A5 /* LoginCoordinator.swift */,
-				BBE78352290F50B4008F56A5 /* TabBarCoordinator.swift */,
+				BBE7834E290F4FEB008F56A5 /* ProfileCoordinator.swift */,
+				BBE78350290F5024008F56A5 /* PhotoCoordinator.swift */,
+				BBE7836729106B3C008F56A5 /* FeedCoordinator.swift */,
+				BBE7836929106BA7008F56A5 /* Factory.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		BBE78354290F51D4008F56A5 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				BBE78355290F51FB008F56A5 /* TabBarController.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		BBE78357290F7035008F56A5 /* UserData */ = {
@@ -505,10 +497,11 @@
 			files = (
 				BBAFDEF128CD476800C4177C /* Photos.swift in Sources */,
 				BBAFDEF728CD4F9400C4177C /* PhotosViewController.swift in Sources */,
-				BBE7834F290F4FEB008F56A5 /* AppCoordinator.swift in Sources */,
+				BBE7834F290F4FEB008F56A5 /* ProfileCoordinator.swift in Sources */,
 				BBD3DD0629075B0600EC8B8F /* CustomButton.swift in Sources */,
-				BBE78351290F5024008F56A5 /* LoginCoordinator.swift in Sources */,
-				BBE78353290F50B4008F56A5 /* TabBarCoordinator.swift in Sources */,
+				BBE78351290F5024008F56A5 /* PhotoCoordinator.swift in Sources */,
+				BBE78353290F50B4008F56A5 /* TabBar.swift in Sources */,
+				BBE7836829106B3C008F56A5 /* FeedCoordinator.swift in Sources */,
 				BB15978828AAD82600BBA453 /* PostViewController.swift in Sources */,
 				BB15977028AA704200BBA453 /* AppDelegate.swift in Sources */,
 				BBD3DD08290810AA00EC8B8F /* CustomTextField.swift in Sources */,
@@ -530,9 +523,8 @@
 				BBE78338290F0F32008F56A5 /* LoginFactory.swift in Sources */,
 				BBAFDED428C6A07500C4177C /* extension.swift in Sources */,
 				BBE78336290F0E96008F56A5 /* LoginInspector.swift in Sources */,
-				BB15977228AA704200BBA453 /* SceneDelegate.swift in Sources */,
+				BBE7836A29106BA7008F56A5 /* Factory.swift in Sources */,
 				BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */,
-				BBE78356290F51FB008F56A5 /* TabBarController.swift in Sources */,
 				BBAFDEE628C92B5000C4177C /* PostTableViewCell.swift in Sources */,
 				BBAB864328B3B7D400BB951A /* ProfileTabelHeaderView.swift in Sources */,
 				BBE78363291016A1008F56A5 /* PostsModel.swift in Sources */,
