@@ -14,6 +14,7 @@ final class TabBarController: UITabBarController {
     var firstTabNavidationController: UINavigationController!
     var secondTabNavigationController: UINavigationController!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -23,9 +24,11 @@ final class TabBarController: UITabBarController {
         
         let loginVC = LoginViewController()
         loginVC.loginDelegate = MyLoginFactory().produceLoginInspector()
+        let currentUser = CurrentUserService()
+        let profileVC = ProfileViewController(currentUser: currentUser.user)
         
         firstTabNavidationController = UINavigationController.init(rootViewController: FeedViewController())
-        secondTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
+        secondTabNavigationController = UINavigationController.init(rootViewController: profileVC)
 
         viewControllers = [firstTabNavidationController, secondTabNavigationController]
         

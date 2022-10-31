@@ -14,7 +14,15 @@ import iOSIntPackage
 
 class ProfileViewController: UIViewController {
    
-    var user1 = User(userName: "", avatar: UIImage(), status: "")
+    var currentUser: User
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
    
 
   private lazy var tableView: UITableView = {
@@ -32,7 +40,7 @@ class ProfileViewController: UIViewController {
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
-        avatar.image = user1.avatar
+        avatar.image = currentUser.userAvatar
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
@@ -199,7 +207,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let profile = ProfileHeaderView()
-            profile.setupUserData(user: user1)
+            profile.setupUserData(user: currentUser)
             return profile
         }
         return nil

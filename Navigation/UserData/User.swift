@@ -8,16 +8,20 @@
 import Foundation
 import UIKit
 
-final class User {
+class User {
 
-    let userName : String
-    let avatar : UIImage
-    let status : String
+    var userLogin: String
+    var userFullName: String
+    var userAvatar: UIImage
+    var userStatus: String
+    var userPassword: String
     
-    init(userName: String, avatar: UIImage, status: String) {
-        
-        self.userName = userName
-        self.avatar = avatar
-        self.status = status
+    init(userLogin: String, userFullName: String, userAvatar: UIImage, userStatus: String, userPassword: String) {
+        self.userLogin = userLogin
+        self.userFullName = userFullName
+        self.userAvatar = userAvatar
+        self.userStatus = userStatus
+        self.userPassword = userPassword
     }
+
 }

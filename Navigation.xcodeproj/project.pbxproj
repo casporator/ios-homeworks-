@@ -49,6 +49,7 @@
 		BBE78356290F51FB008F56A5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78355290F51FB008F56A5 /* TabBarController.swift */; };
 		BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */; };
 		BBE7835D290F7343008F56A5 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835C290F7343008F56A5 /* TestUserService.swift */; };
+		BBE7835F29100B27008F56A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835E29100B27008F56A5 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		BBE78355290F51FB008F56A5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		BBE7835C290F7343008F56A5 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		BBE7835E29100B27008F56A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				BB28D52028FACC980049BB92 /* User.swift */,
+				BBE7835E29100B27008F56A5 /* UserService.swift */,
 				BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */,
 				BBE7835C290F7343008F56A5 /* TestUserService.swift */,
 			);
@@ -478,6 +481,7 @@
 				BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */,
 				BBD3DD0C29083DD500EC8B8F /* FeedModel.swift in Sources */,
 				BBE7834D290F4FA9008F56A5 /* Coordinator.swift in Sources */,
+				BBE7835F29100B27008F56A5 /* UserService.swift in Sources */,
 				BBAB864728B4448100BB951A /* Struct.swift in Sources */,
 				BBAFDEF528CD4C2C00C4177C /* PhotosCollectionViewCell.swift in Sources */,
 				BBAFDEF328CD4A3100C4177C /* PhotoTableViewCell.swift in Sources */,

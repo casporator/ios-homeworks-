@@ -176,16 +176,17 @@ class LoginViewController : UIViewController {
         loginButton.buttonAction = { [self] in
     
 #if DEBUG
-        let loginingUser = TestUserService(user: User(userName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+        let loginingUser = TestUserService()
 #else
-        let loginingUser = CurrentUserService(user: User(userName: "Пипин", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+      //  let loginingUser = CurrentUserService()
 #endif
             if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
-                let profileViewController = ProfileViewController()
-                profileViewController.user1 = loginingUser.user
-         // navigationController?.pushViewController(profileViewController, animated: true)
-               
+                
                 didSentEventClosure?(.login)
+               
+        //  navigationController?.pushViewController(profileViewController, animated: true)
+               
+              
                 
         } else {
             self.present(alertPassword, animated: true, completion: nil)
