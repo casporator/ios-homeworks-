@@ -7,11 +7,18 @@
 
 import UIKit
 
+extension LoginViewController {
+    enum Event {
+        case login
+    }
+}
+
 class LoginViewController : UIViewController {
     
     //Для класса LoginViewController сделайте свойство loginDelegate
-   // var loginDelegate : LoginViewControllerDelegate?
-    var loginFactory: MyLoginFactory?
+    var loginDelegate : LoginViewControllerDelegate?
+  //  var loginFactory: MyLoginFactory?
+    var didSentEventClosure: ((LoginViewController.Event) -> Void)?
 
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
@@ -85,9 +92,15 @@ class LoginViewController : UIViewController {
     }()
     
     //MARK: добавляю кнопку логин
-    private lazy var loginButton = CustomButton(title: "Log In", backgroundColor: UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage()), cornerRadius: 10)
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton(title: "Log In", backgroundColor: UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage()), cornerRadius: 10)
     
-
+        
+        
+        
+      return button
+    }()
+        
     // объявляю алертконтроллер (в случае неверного логина)
     let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .actionSheet)
   
@@ -163,17 +176,17 @@ class LoginViewController : UIViewController {
         loginButton.buttonAction = { [self] in
     
 #if DEBUG
-        let loginingUser = TestUserService(incomingUser: User(fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+        let loginingUser = TestUserService(user: User(userName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
 #else
-        let loginingUser = CurrentUserService(incomingUser: User(fullName: "Пипин", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+        let loginingUser = CurrentUserService(user: User(userName: "Пипин", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
 #endif
-            if 
-               let inspector = loginFactory?.produceLoginInspector,
-               inspector().checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
-               // let profileVC = ProfileViewController(userService: userService, userName: username )
-            let profileViewController = ProfileViewController()
-            profileViewController.user1 = loginingUser.incomingUser
-            navigationController?.pushViewController(profileViewController, animated: true)
+            if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
+                let profileViewController = ProfileViewController()
+                profileViewController.user1 = loginingUser.user
+         // navigationController?.pushViewController(profileViewController, animated: true)
+               
+                didSentEventClosure?(.login)
+                
         } else {
             self.present(alertPassword, animated: true, completion: nil)
             self.view.applyBlurEffect()
@@ -241,5 +254,4 @@ class LoginViewController : UIViewController {
         ])
     }
 }
-
 

@@ -10,47 +10,22 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var feedTabNavigationController : UINavigationController!
-    var profileTabNavigationController : UINavigationController!
-    var loginTabNavigationController : UINavigationController!
-
+    
+    var rootCoordinator: AppCoordinator?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-            
-       
-        
-       
-        let tabBarController = UITabBarController()
-        
-        feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
-        profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
-        
-        //MARK: Внедрите зависимость контроллера LoginViewController от LoginInspector:
-        let loginController = LoginViewController()
-        loginController.loginFactory = MyLoginFactory()
-        
-        loginTabNavigationController = UINavigationController.init(rootViewController: loginController)
-        
-        tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController]
-        
-       
-        let item1 = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.circle"), tag: 1)
-        let item2 = UITabBarItem(title: "Лента", image: UIImage(systemName: "rectangle.3.group.bubble.left"), tag: 0)
-        
-        profileTabNavigationController.tabBarItem = item1
-        feedTabNavigationController.tabBarItem = item2
-        loginTabNavigationController.tabBarItem = item1
-        
-        
-        UITabBar.appearance().tintColor = .systemBlue
-        UITabBar.appearance().backgroundColor = .white
-        
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = tabBarController
+        
+        let navigationController = UINavigationController()
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
+        
+        rootCoordinator = AppCoordinator.init(navigationController)
+        rootCoordinator?.start()
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         

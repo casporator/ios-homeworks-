@@ -14,10 +14,10 @@ import iOSIntPackage
 
 class ProfileViewController: UIViewController {
    
-    var user1: User = User( fullName: "Hipster Dog", avatar:  UIImage(named: "IMG_0037") ?? UIImage(), status: "У меня тоже есть чувства. Например голод")
-  
-    
-    private lazy var tableView: UITableView = {
+    var user1 = User(userName: "", avatar: UIImage(), status: "")
+   
+
+  private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         
         return tableView
     }()
-    
+
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()

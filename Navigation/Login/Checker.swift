@@ -11,16 +11,18 @@ import Foundation
 class Checker {
     static let shared = Checker()
     
-    private let login = "1"
-    private let password = "1"
+    private let currentLogin: String
+    private let currentPassword: String
+    
+    private init() {
+        currentLogin = "1"
+        currentPassword = "1"
+    }
     
     func checkLogin(login: String, password: String) -> Bool {
-        self.login == login && self.password == password ? true : false
-    }
-    
-    private init(){
-        
+        return login == currentLogin && password == currentPassword ? true : false
     }
 }
+
         
 
