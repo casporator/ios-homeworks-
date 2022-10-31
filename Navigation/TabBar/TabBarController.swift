@@ -25,7 +25,8 @@ final class TabBarController: UITabBarController {
         let loginVC = LoginViewController()
         loginVC.loginDelegate = MyLoginFactory().produceLoginInspector()
         let currentUser = CurrentUserService()
-        let profileVC = ProfileViewController(currentUser: currentUser.user)
+        let profileViewModedl = ProfileViewModel(currentUser: currentUser.user)
+        let profileVC = ProfileViewController(profileViewModel: profileViewModedl)
         
         firstTabNavidationController = UINavigationController.init(rootViewController: FeedViewController())
         secondTabNavigationController = UINavigationController.init(rootViewController: profileVC)

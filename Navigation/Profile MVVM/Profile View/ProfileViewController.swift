@@ -13,18 +13,17 @@ import iOSIntPackage
 
 
 class ProfileViewController: UIViewController {
-   
-    var currentUser: User
-    init(currentUser: User) {
-        self.currentUser = currentUser
+    let profileViewModel: ProfileViewModel
+    
+    init(profileViewModel: ProfileViewModel) {
+        self.profileViewModel = profileViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
-
+    
   private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
@@ -40,7 +39,7 @@ class ProfileViewController: UIViewController {
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
-        avatar.image = currentUser.userAvatar
+        avatar.image = profileViewModel.currentUser.userAvatar
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
@@ -206,9 +205,8 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     //MARK: передаю ProfileHeader в Хэдер
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let profile = ProfileHeaderView()
-            profile.setupUserData(user: currentUser)
-            return profile
+            
+            return profileViewModel.profileHeaderView
         }
         return nil
     }
@@ -223,7 +221,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }
         
         if section == 1 {
-            return posts.count
+            return profileViewModel.postsData.count
         }
         return 0
     }
@@ -249,7 +247,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             
             //MARK: устанавливаю фильтры по заданию
             
-            var post = posts[indexPath.row]
+            var post = profileViewModel.postsData[indexPath.row]
                              
             ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
                 filteredImage in post.image = filteredImage
@@ -258,10 +256,10 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
            
             
             let PostModel = PostTableViewCell.ViewModel(
-            autor: posts[indexPath.row].autor,
-            descriptionText: posts[indexPath.row].description,
-            likes: "Likes: \(posts[indexPath.row].likes)",
-            views: "Views: \(posts[indexPath.row].views)",
+            autor: profileViewModel.postsData[indexPath.row].autor,
+            descriptionText: profileViewModel.postsData[indexPath.row].description,
+            likes: "Likes: \(profileViewModel.postsData[indexPath.row].likes)",
+            views: "Views: \(profileViewModel.postsData[indexPath.row].views)",
             image: post.image
         )
         cell.setup(with: PostModel)

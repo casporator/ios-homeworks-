@@ -24,7 +24,6 @@
 		BB2D2D7C28EF40BF00742E1E /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB2D2D6C28EF40BF00742E1E /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB2D2D7F28EF40BF00742E1E /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D6A28EF40BF00742E1E /* StorageService.framework */; };
 		BB2D2D8028EF40BF00742E1E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D6A28EF40BF00742E1E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BB2D2D8828EF40D900742E1E /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* Posts.swift */; };
 		BB576B2728F5E3E5008922E8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB576B2628F5E3E5008922E8 /* SnapKit */; };
 		BBAB864328B3B7D400BB951A /* ProfileTabelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */; };
 		BBAB864728B4448100BB951A /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864628B4448100BB951A /* Struct.swift */; };
@@ -50,6 +49,8 @@
 		BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */; };
 		BBE7835D290F7343008F56A5 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835C290F7343008F56A5 /* TestUserService.swift */; };
 		BBE7835F29100B27008F56A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835E29100B27008F56A5 /* UserService.swift */; };
+		BBE78363291016A1008F56A5 /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* PostsModel.swift */; };
+		BBE7836629101700008F56A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836529101700008F56A5 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +99,7 @@
 		BB15977B28AA704200BBA453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB15977D28AA704200BBA453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB15978328AA75DE00BBA453 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		BB15978528AA75F100BBA453 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Navigation/Controllers/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		BB15978528AA75F100BBA453 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "Navigation/Profile MVVM/Profile View/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		BB15978728AAD82600BBA453 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BB15978928ABDB9C00BBA453 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		BB28D52028FACC980049BB92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -112,7 +113,7 @@
 		BBAB864628B4448100BB951A /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
 		BBAB864928C3630C00BB951A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BBAFDED328C6A07500C4177C /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
-		BBAFDEE328C9241200C4177C /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		BBAFDEE328C9241200C4177C /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		BBAFDEE528C92B5000C4177C /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BBAFDEF028CD476800C4177C /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		BBAFDEF228CD4A3100C4177C /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		BBE7835C290F7343008F56A5 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		BBE7835E29100B27008F56A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		BBE7836529101700008F56A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 		BB15976E28AA704200BBA453 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				BBE78360291015DD008F56A5 /* Profile MVVM */,
 				BBE78357290F7035008F56A5 /* UserData */,
 				BBE78354290F51D4008F56A5 /* TabBar */,
 				BBE7834B290F4F78008F56A5 /* Coordinators */,
@@ -205,7 +208,6 @@
 		BB2D2D6B28EF40BF00742E1E /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
-				BBAFDEE328C9241200C4177C /* Posts.swift */,
 				BB2D2D6C28EF40BF00742E1E /* StorageService.h */,
 				BB2D2D6D28EF40BF00742E1E /* StorageService.docc */,
 			);
@@ -232,7 +234,6 @@
 		BBAB864828B4452800BB951A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */,
 				BBAFDEE528C92B5000C4177C /* PostTableViewCell.swift */,
 				BBAFDEF228CD4A3100C4177C /* PhotoTableViewCell.swift */,
 				BBAFDEF428CD4C2C00C4177C /* PhotosCollectionViewCell.swift */,
@@ -247,7 +248,6 @@
 				BB15978728AAD82600BBA453 /* PostViewController.swift */,
 				BB15978328AA75DE00BBA453 /* FeedViewController.swift */,
 				BB15978928ABDB9C00BBA453 /* InfoViewController.swift */,
-				BB15978528AA75F100BBA453 /* ProfileViewController.swift */,
 				BBAFDEF628CD4F9400C4177C /* PhotosViewController.swift */,
 			);
 			path = Controllers;
@@ -313,6 +313,41 @@
 				BBE7835C290F7343008F56A5 /* TestUserService.swift */,
 			);
 			path = UserData;
+			sourceTree = "<group>";
+		};
+		BBE78360291015DD008F56A5 /* Profile MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				BBE78364291016D0008F56A5 /* ProfileViewModel */,
+				BBE7836229101699008F56A5 /* Model */,
+				BBE7836129101602008F56A5 /* Profile View */,
+			);
+			path = "Profile MVVM";
+			sourceTree = "<group>";
+		};
+		BBE7836129101602008F56A5 /* Profile View */ = {
+			isa = PBXGroup;
+			children = (
+				BB15978528AA75F100BBA453 /* ProfileViewController.swift */,
+				BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */,
+			);
+			path = "Profile View";
+			sourceTree = "<group>";
+		};
+		BBE7836229101699008F56A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBAFDEE328C9241200C4177C /* PostsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BBE78364291016D0008F56A5 /* ProfileViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BBE7836529101700008F56A5 /* ProfileViewModel.swift */,
+			);
+			path = ProfileViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,6 +521,7 @@
 				BBAFDEF528CD4C2C00C4177C /* PhotosCollectionViewCell.swift in Sources */,
 				BBAFDEF328CD4A3100C4177C /* PhotoTableViewCell.swift in Sources */,
 				BB28D52C28FF45E90049BB92 /* Checker.swift in Sources */,
+				BBE7836629101700008F56A5 /* ProfileViewModel.swift in Sources */,
 				BBE78334290F0E4B008F56A5 /* LoginViewControllerDelegate.swift in Sources */,
 				BBE7835D290F7343008F56A5 /* TestUserService.swift in Sources */,
 				BB15978A28ABDB9C00BBA453 /* InfoViewController.swift in Sources */,
@@ -499,6 +535,7 @@
 				BBE78356290F51FB008F56A5 /* TabBarController.swift in Sources */,
 				BBAFDEE628C92B5000C4177C /* PostTableViewCell.swift in Sources */,
 				BBAB864328B3B7D400BB951A /* ProfileTabelHeaderView.swift in Sources */,
+				BBE78363291016A1008F56A5 /* PostsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +544,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2D2D6E28EF40BF00742E1E /* StorageService.docc in Sources */,
-				BB2D2D8828EF40D900742E1E /* Posts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +704,6 @@
 		BB15978128AA704200BBA453 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -697,7 +732,6 @@
 		BB15978228AA704200BBA453 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -790,7 +824,6 @@
 		BB2D2D8428EF40BF00742E1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B7CXNVY8HL;
@@ -808,7 +841,6 @@
 		BB2D2D8528EF40BF00742E1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B7CXNVY8HL;

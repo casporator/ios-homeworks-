@@ -178,10 +178,11 @@ class LoginViewController : UIViewController {
 #if DEBUG
         let loginingUser = TestUserService()
 #else
-      //  let loginingUser = CurrentUserService()
+      let loginingUser = CurrentUserService()
 #endif
             if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
                 
+            //    self.navigationController?.pushViewController(profileVC, animated: true)
                 didSentEventClosure?(.login)
                
         //  navigationController?.pushViewController(profileViewController, animated: true)
