@@ -46,11 +46,11 @@
 		BBE78353290F50B4008F56A5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78352290F50B4008F56A5 /* TabBar.swift */; };
 		BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */; };
 		BBE7835D290F7343008F56A5 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835C290F7343008F56A5 /* TestUserService.swift */; };
-		BBE7835F29100B27008F56A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7835E29100B27008F56A5 /* UserService.swift */; };
 		BBE78363291016A1008F56A5 /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* PostsModel.swift */; };
 		BBE7836629101700008F56A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836529101700008F56A5 /* ProfileViewModel.swift */; };
 		BBE7836829106B3C008F56A5 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836729106B3C008F56A5 /* FeedCoordinator.swift */; };
 		BBE7836A29106BA7008F56A5 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836929106BA7008F56A5 /* Factory.swift */; };
+		BBE7836C2910A280008F56A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7836B2910A280008F56A5 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,10 +130,10 @@
 		BBE78352290F50B4008F56A5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		BBE7835C290F7343008F56A5 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
-		BBE7835E29100B27008F56A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BBE7836529101700008F56A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BBE7836729106B3C008F56A5 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		BBE7836929106BA7008F56A5 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		BBE7836B2910A280008F56A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,7 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				BB28D52028FACC980049BB92 /* User.swift */,
-				BBE7835E29100B27008F56A5 /* UserService.swift */,
+				BBE7836B2910A280008F56A5 /* UserService.swift */,
 				BBE7835A290F70A6008F56A5 /* CurrentUserService.swift */,
 				BBE7835C290F7343008F56A5 /* TestUserService.swift */,
 			);
@@ -509,10 +509,10 @@
 				BBE7835B290F70A6008F56A5 /* CurrentUserService.swift in Sources */,
 				BBD3DD0C29083DD500EC8B8F /* FeedModel.swift in Sources */,
 				BBE7834D290F4FA9008F56A5 /* Coordinator.swift in Sources */,
-				BBE7835F29100B27008F56A5 /* UserService.swift in Sources */,
 				BBAB864728B4448100BB951A /* Struct.swift in Sources */,
 				BBAFDEF528CD4C2C00C4177C /* PhotosCollectionViewCell.swift in Sources */,
 				BBAFDEF328CD4A3100C4177C /* PhotoTableViewCell.swift in Sources */,
+				BBE7836C2910A280008F56A5 /* UserService.swift in Sources */,
 				BB28D52C28FF45E90049BB92 /* Checker.swift in Sources */,
 				BBE7836629101700008F56A5 /* ProfileViewModel.swift in Sources */,
 				BBE78334290F0E4B008F56A5 /* LoginViewControllerDelegate.swift in Sources */,

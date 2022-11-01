@@ -11,17 +11,16 @@ import UIKit
 
 class CurrentUserService: UserService {
     
-    let user: User = .init(userLogin: "123", userFullName: "пипин", userAvatar: UIImage(named: "pipin") ?? UIImage(), userStatus: "Мои шесть кубиков защищены слоем жира", userPassword: "123")
+    let user: User = .init(userFullName: "пипин", userAvatar: UIImage(named: "pipin") ?? UIImage(), userStatus: "Мои шесть кубиков защищены слоем жира")
     
-    func getLogin(userLogin: String, userPassword: String) -> User? {
+    func returnUser(userName: String) -> User? {
         
-        if userLogin == user.userLogin, userPassword == user.userPassword {
+       if userName == user.userFullName {
             return user
         }
-        else {
-            print("не правильный логин или пароль")
             return nil
-        }
     }
+    
 }
+   
 

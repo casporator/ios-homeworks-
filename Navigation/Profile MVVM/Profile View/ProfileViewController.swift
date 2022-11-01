@@ -266,7 +266,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             views: "Views: \(profileViewModel.postsData[indexPath.row].views)",
             image: post.image
         )
-        cell.setup(with: PostTableViewCell.ViewModel)
+        cell.setup(with: PostModel)
         
         return cell
             

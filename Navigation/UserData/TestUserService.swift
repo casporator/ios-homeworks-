@@ -10,18 +10,14 @@ import UIKit
 
 class TestUserService: UserService {
     
-    let user: User = .init(userLogin: "test", userFullName: "Test Person", userAvatar: UIImage(named: "nonePhoto") ?? UIImage(), userStatus: "Test status test", userPassword: "test")
+    let user: User = .init(userFullName: "Test Person", userAvatar: UIImage(named: "nonePhoto") ?? UIImage(), userStatus: "Test status test")
     
-    func getLogin(userLogin: String, userPassword: String) -> User? {
+    func returnUser(userName: String) -> User? {
         
-        if userLogin == user.userLogin, userPassword == user.userPassword {
+       if userName == user.userFullName {
             return user
         }
-        else {
-            print("не правильный логин или пароль")
             return nil
-        }
     }
-
 }
-
+  

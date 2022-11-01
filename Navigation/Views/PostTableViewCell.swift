@@ -18,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
         let image: UIImage?
 
     }
-  
+
     private lazy var autor : UILabel = {
         let label = UILabel()
         label.text = "Svinki.ru"
