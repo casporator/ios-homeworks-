@@ -23,5 +23,11 @@ class TabBarController: UITabBarController {
             profileVC.navigationController,
             feedVC.navigationController
         ]
+        
+        UITabBar.appearance().tintColor = .systemBlue
+        UITabBar.appearance().barTintColor = .white
+        UITabBar.appearance().layer.borderColor = UIColor.darkGray.cgColor
+        UITabBar.appearance().layer.borderWidth = 1
+        UITabBar.appearance().layer.masksToBounds = true
     }
 }
