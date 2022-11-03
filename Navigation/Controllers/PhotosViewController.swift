@@ -11,6 +11,7 @@ import iOSIntPackage // импортирую расширение iOSIntPackage
 
 class PhotosViewController: UIViewController, ImageLibrarySubscriber { //подписываюсь на расширение
  
+    weak var coordinator: ProfileTabCoordinator?
     //Создайте для PhotosViewController экземпляр класса ImagePublisherFacade
     var imagePublisher = ImagePublisherFacade()
     

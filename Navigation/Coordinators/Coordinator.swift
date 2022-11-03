@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-protocol MainCoordinator {
-    func startApplication() -> UIViewController
-}
-
-class MainCoordinatorImp: MainCoordinator {
-    func startApplication() -> UIViewController {
-        return TabBarController()
-    }
+protocol Coordinator: AnyObject {
+    
+    var navigationController: UINavigationController {get set}
+    var childCoordinators: [Coordinator] {get set}
+    
+    func start()
 }
 

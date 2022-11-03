@@ -8,26 +8,32 @@
 import Foundation
 import UIKit
 
-
-class ProfileCoordinator {
- 
-    let navigationController: UINavigationController
+class ProfileTabCoordinator: Coordinator {
     
-    init(navigationController: UINavigationController) {
+    var navigationController: UINavigationController
+    var childCoordinators: [Coordinator] = []
+
+    
+    init (navigationController: UINavigationController){
         self.navigationController = navigationController
     }
     
-    
-    func startView() {
-        
+    func start() {
         let currentUserService = CurrentUserService()
-        
-        let photoCoordinator = PhotoCoordinator(navigationController: navigationController)
-        
         let profileViewModel = ProfileViewModel(currentUser: currentUserService.user)
-
-        let profileVC = ProfileViewController(photoCoordinator: photoCoordinator, profileViewModel: profileViewModel)
-        navigationController.pushViewController(profileVC, animated: true)
+        let vc = ProfileViewController(profileViewModel: profileViewModel)
+        
+        vc.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), tag: 0)
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+        
+    }
+    
+    func openPhotosViewController (){
+        let vc = PhotosViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+        
     }
 }
 

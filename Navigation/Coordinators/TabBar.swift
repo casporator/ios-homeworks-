@@ -5,24 +5,26 @@
 //  Created by Oleg Popov on 31.10.2022.
 //
 
+import Foundation
 import UIKit
 
-class TabBarController: UITabBarController {
-
-    private let profileVC = Factory(navigationController: UINavigationController(), viewController: .profile)
-    private let feedVC = Factory(navigationController: UINavigationController(), viewController: .feed)
+class MainTabBarController: UITabBarController {
     
-    override func viewDidLoad() {
+    let profile = ProfileTabCoordinator(navigationController: UINavigationController())
+    let feed = FeedCoordinator(navigationController: UINavigationController())
+    
+   override func viewDidLoad() {
         super.viewDidLoad()
-        
         setControllers()
+        profile.start()
+        feed.start()
     }
     
     func setControllers() {
         viewControllers = [
-            profileVC.navigationController,
-            feedVC.navigationController
-        ]
+            profile.navigationController,
+            feed.navigationController
+           ]
         
         UITabBar.appearance().tintColor = .systemBlue
         UITabBar.appearance().barTintColor = .white

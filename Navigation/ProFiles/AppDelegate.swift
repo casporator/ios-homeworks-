@@ -9,29 +9,27 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+        
     var window: UIWindow?
-    
 
+    var appCoordinator: AppCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+       
         
-        let mainCoordinator: MainCoordinator = MainCoordinatorImp()
+        window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        UITabBar.appearance().tintColor = .systemBlue
-        UITabBar.appearance().barTintColor = .systemGray
-        UITabBar.appearance().backgroundColor = .white
-        UITabBar.appearance().layer.borderColor = UIColor.darkGray.cgColor
-        UITabBar.appearance().layer.borderWidth = 1
-        UITabBar.appearance().layer.masksToBounds = true
+        let navigationController: UINavigationController = .init()
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = mainCoordinator.startApplication()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        appCoordinator = AppCoordinator.init(navigationController: navigationController)
+        appCoordinator?.start()
         
         return true
         
     }
-
-
+    
 }
 

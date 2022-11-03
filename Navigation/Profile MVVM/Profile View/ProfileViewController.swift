@@ -13,11 +13,12 @@ import iOSIntPackage
 
 
 class ProfileViewController: UIViewController {
-    let profileViewModel: ProfileViewModel
-    let photoCoordinator: PhotoCoordinator
     
-    init(photoCoordinator: PhotoCoordinator, profileViewModel: ProfileViewModel) {
-        self.photoCoordinator = photoCoordinator
+    weak var coordinator: ProfileTabCoordinator?
+
+    let profileViewModel: ProfileViewModel
+    
+    init(profileViewModel: ProfileViewModel) {
         self.profileViewModel = profileViewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,7 +27,7 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-  private lazy var tableView: UITableView = {
+private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
@@ -233,7 +234,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0{
             // let photosViewController = PhotosViewController()
             //navigationController?.pushViewController(photosViewController, animated: true)
-            photoCoordinator.showView()
+            self.coordinator?.openPhotosViewController()
         }
     }
    

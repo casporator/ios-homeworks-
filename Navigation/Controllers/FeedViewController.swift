@@ -10,18 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
     
     
-    let coordinator: FeedCoordinator
-    
-    init(coordinator: FeedCoordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
+    weak var coordinator: FeedCoordinator?
     
     var postTitle = HeadPost(title: "Пост")
     
@@ -112,7 +101,8 @@ class FeedViewController: UIViewController {
             ($0).buttonAction = { [self] in
         let detailController = PostViewController()
         detailController.titlePost = postTitle.title //передаём наш пост в виде заголовка на PostView
-        navigationController?.pushViewController(detailController, animated: false)
+        //navigationController?.pushViewController(detailController, animated: false)
+                self.coordinator?.openPostViewController()
     }
   }
 

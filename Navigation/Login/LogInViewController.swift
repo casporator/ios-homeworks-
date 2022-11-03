@@ -8,17 +8,10 @@
 import UIKit
 
 class LoginViewController : UIViewController {
-    var loginDelegate: LoginViewControllerDelegate?
-    let coordinator: ProfileCoordinator
     
-    init(coordinator: ProfileCoordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
-    }
+    weak var coordinator: AppCoordinator?
+    var loginDelegate : LoginViewControllerDelegate?
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
@@ -180,14 +173,10 @@ class LoginViewController : UIViewController {
 #else
       let loginingUser = CurrentUserService()
 #endif
+            let viewController = MainTabBarController()
             if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
-                
-            //    self.navigationController?.pushViewController(profileVC, animated: true)
-                
-               
-        //  navigationController?.pushViewController(profileViewController, animated: true)
-               
-                coordinator.startView()
+
+                self.coordinator?.pushToNavBarController(tapBarController: viewController)
                 
         } else {
             self.present(alertPassword, animated: true, completion: nil)
