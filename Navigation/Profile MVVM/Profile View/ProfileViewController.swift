@@ -15,7 +15,7 @@ import iOSIntPackage
 class ProfileViewController: UIViewController {
     
     weak var coordinator: ProfileTabCoordinator?
-
+    
     let profileViewModel: ProfileViewModel
     
     init(profileViewModel: ProfileViewModel) {
@@ -27,10 +27,11 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-private lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
+        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "indentPostTableCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "indentDefaultTableCell")
@@ -38,7 +39,7 @@ private lazy var tableView: UITableView = {
         
         return tableView
     }()
-
+    
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
@@ -78,9 +79,9 @@ private lazy var tableView: UITableView = {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tabBarController?.tabBar.isHidden = false
-       
+        
         view.addSubviews(tableView, hiddenView, duplicateAvatar, xmarkView)
         addConstraints()
         profileViewModel.setUser()
@@ -90,18 +91,18 @@ private lazy var tableView: UITableView = {
         hideKeyboardWhenTappedAround()
         
 #if DEBUG
-           view.backgroundColor = .blue
-       #else
-       view.backgroundColor = .white
-       #endif
-       }
+        view.backgroundColor = .blue
+#else
+        view.backgroundColor = .white
+#endif
+    }
     
     
-   
+    
     @objc func didTouchAvatar(notification: Notification) {
         startAnimation()
     }
-   
+    
     @objc func didTouchXmark(_ gestureRecognizer: UITapGestureRecognizer){
         closeAnimation()
     }
@@ -114,11 +115,11 @@ private lazy var tableView: UITableView = {
             self.duplicateAvatar.center = self.hiddenView.center
             self.duplicateAvatar.transform = CGAffineTransform(
                 scaleX: self.hiddenView.frame.width / self.duplicateAvatar.frame.width,
-                     y: self.hiddenView.frame.width / self.duplicateAvatar.frame.width)
+                y: self.hiddenView.frame.width / self.duplicateAvatar.frame.width)
             self.duplicateAvatar.isUserInteractionEnabled = false
             self.duplicateAvatar.layer.cornerRadius = 0
             
-           
+            
             //MARK: задаю все изменения вью при анимации
             self.hiddenView.isHidden = false
             self.hiddenView.alpha = 0.5
@@ -147,32 +148,32 @@ private lazy var tableView: UITableView = {
             // прячу xmark
             self.xmarkView.isHidden = true
             
-           
+            
             
         } completion: { _ in
-           
+            
             NotificationCenter.default.post(name: Notification.Name("userTouchXmark"), object: nil)
             self.duplicateAvatar.isHidden = true
             self.hiddenView.isHidden = true
             self.tableView.removeBlurEffect() //отключаю Блюр для тейблвью
         }
     }
-
-
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
     
     func addNotification(){
         NotificationCenter.default.addObserver(self,
-            selector: #selector(didTouchAvatar(notification:)),
-            name: Notification.Name("userTouchAva"),
-            object: nil)
+                                               selector: #selector(didTouchAvatar(notification:)),
+                                               name: Notification.Name("userTouchAva"),
+                                               object: nil)
     }
- 
+    
     func addConstraints(){
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), 
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -181,12 +182,12 @@ private lazy var tableView: UITableView = {
             hiddenView.leftAnchor.constraint(equalTo: view.leftAnchor),
             hiddenView.rightAnchor.constraint(equalTo: view.rightAnchor),
             hiddenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            
             duplicateAvatar.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 16),
             duplicateAvatar.leftAnchor.constraint(equalTo: hiddenView.leftAnchor, constant: 16),
             duplicateAvatar.widthAnchor.constraint(equalToConstant: 120),
             duplicateAvatar.heightAnchor.constraint(equalToConstant: 120),
-
+            
             xmarkView.topAnchor.constraint(equalTo: hiddenView.topAnchor, constant: 16),
             xmarkView.rightAnchor.constraint(equalTo: hiddenView.rightAnchor, constant: -16),
             xmarkView.widthAnchor.constraint(equalToConstant: 30),
@@ -197,12 +198,12 @@ private lazy var tableView: UITableView = {
     
     //MARK: устанавливаю реагирование на тач для xmarkView
     func addGestures(){
-         let tapGestureRecognizerForXmark = UITapGestureRecognizer(target: self, action: #selector(self.didTouchXmark(_:)))
+        let tapGestureRecognizerForXmark = UITapGestureRecognizer(target: self, action: #selector(self.didTouchXmark(_:)))
         self.xmarkView.addGestureRecognizer(tapGestureRecognizerForXmark)
     }
 }
-   
-  
+
+
 
 extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     
@@ -216,7 +217,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -229,7 +230,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }
         return 0
     }
-  
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
             // let photosViewController = PhotosViewController()
@@ -237,7 +238,16 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             self.coordinator?.openPhotosViewController()
         }
     }
-   
+    
+    // ручная настройка высоты ячеек
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 160
+        }
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             
@@ -245,31 +255,31 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "indentPostTableCell", for: indexPath) as? PostTableViewCell else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "indentDefaultTableCell", for: indexPath)
-        
-            return cell
-        }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "indentDefaultTableCell", for: indexPath)
+                
+                return cell
+            }
             
             //MARK: устанавливаю фильтры по заданию
             
             var post = profileViewModel.postsData[indexPath.row]
-                             
+            
             ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
                 filteredImage in post.image = filteredImage
             }
-          
-           
+            
+            
             
             let PostModel = PostTableViewCell.ViewModel(
-            autor: profileViewModel.postsData[indexPath.row].autor,
-            descriptionText: profileViewModel.postsData[indexPath.row].description,
-            likes: "Likes: \(profileViewModel.postsData[indexPath.row].likes)",
-            views: "Views: \(profileViewModel.postsData[indexPath.row].views)",
-            image: post.image
-        )
-        cell.setup(with: PostModel)
-        
-        return cell
+                autor: profileViewModel.postsData[indexPath.row].autor,
+                descriptionText: profileViewModel.postsData[indexPath.row].description,
+                likes: "Likes: \(profileViewModel.postsData[indexPath.row].likes)",
+                views: "Views: \(profileViewModel.postsData[indexPath.row].views)",
+                image: post.image
+            )
+            cell.setup(with: PostModel)
+            
+            return cell
             
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "defaultTableCellIdentifier", for: indexPath)

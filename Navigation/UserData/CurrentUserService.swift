@@ -11,7 +11,7 @@ import UIKit
 
 class CurrentUserService: UserService {
     
-    let user: User = .init(userFullName: "пипин", userAvatar: UIImage(named: "pipin") ?? UIImage(), userStatus: "Мои шесть кубиков защищены слоем жира")
+    let user: User = .init(userFullName: "Mr.Pipin", userAvatar: UIImage(named: "pipin") ?? UIImage(), userStatus: "Мои шесть кубиков защищены слоем жира")
     
     func returnUser(userName: String) -> User? {
         

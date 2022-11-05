@@ -33,7 +33,7 @@ class PhotoTableViewCell : UITableViewCell {
     
     private lazy var layout : UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal // хотел сделать горризонтальный скролл! установил 8 ячеек..но скролла нет ((((  Или это так не работает? Нельзя засунуть в таблицу коллекцию и скролить по горизонтали?
+        layout.scrollDirection = .horizontal
         layout.collectionView?.isPagingEnabled = true
         layout.minimumInteritemSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
@@ -65,7 +65,9 @@ class PhotoTableViewCell : UITableViewCell {
     }
     
     func addViews(){
-        addSubviews(titleLabel, arrowImage, collectionInFeed )
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(arrowImage)
+        contentView.addSubview(collectionInFeed)
     }
     
     func addConstraints(){
@@ -80,16 +82,16 @@ class PhotoTableViewCell : UITableViewCell {
             collectionInFeed.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             collectionInFeed.leftAnchor.constraint(equalTo: self.leftAnchor),
             collectionInFeed.rightAnchor.constraint(equalTo: self.rightAnchor),
-            collectionInFeed.heightAnchor.constraint(equalToConstant: photoSizeInFeed),
+            //  collectionInFeed.heightAnchor.constraint(equalToConstant: photoSizeInFeed),
             collectionInFeed.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
         ])
     }
 }
 
-extension PhotoTableViewCell : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PhotoTableViewCell : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,17 +100,19 @@ extension PhotoTableViewCell : UICollectionViewDataSource, UICollectionViewDeleg
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        cell.setup(name: "\(photoData[indexPath.item])")
-        cell.layer.cornerRadius = 6 //устанавливаю закругление согласно макету
+        cell.setup(name: "\(photoData[indexPath.row])")
+        cell.layer.cornerRadius = 6
         cell.clipsToBounds = true
-        cell.backgroundColor = .clear
+        cell.backgroundColor = .black
         
         return cell
     }
-
+    
+    
+}
+extension PhotoTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: photoSizeInFeed, height: photoSizeInFeed)
-
     }
+    
 }
-
