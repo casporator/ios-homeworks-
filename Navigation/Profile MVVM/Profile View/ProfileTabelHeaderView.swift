@@ -18,7 +18,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.layer.masksToBounds = true
         photo.layer.borderWidth = 3
-        photo.layer.borderColor = UIColor.white.cgColor
+        photo.layer.borderColor = UIColor(hexString: "#999999").cgColor
         photo.isUserInteractionEnabled = true //добавляю реакцию на нажатие аватарки
         
         return photo

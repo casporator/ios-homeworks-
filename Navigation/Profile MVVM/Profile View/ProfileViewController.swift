@@ -36,6 +36,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "indentPostTableCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "indentDefaultTableCell")
         tableView.rowHeight = UITableView.automaticDimension
+       
         
         return tableView
     }()
@@ -47,7 +48,7 @@ class ProfileViewController: UIViewController {
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
-        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.layer.borderColor = UIColor(hexString: "#999999").cgColor
         avatar.isHidden = true
         avatar.toAutoLayout()
         

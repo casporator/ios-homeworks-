@@ -48,6 +48,7 @@ class PhotoTableViewCell : UITableViewCell {
         collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
         collection.delegate = self
         collection.dataSource = self
+      //  collection.backgroundColor = UIColor(hexString: "#00000")
         
         collection.toAutoLayout()
         return collection
@@ -91,7 +92,8 @@ class PhotoTableViewCell : UITableViewCell {
 extension PhotoTableViewCell : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        //return 4
+        return photoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         let img = UIImageView()
         img.image =  UIImage(named: "pigs")
         img.contentMode = .scaleAspectFit
-        img.backgroundColor = .black
+        img.backgroundColor = UIColor(hexString: "#00000")
         img.toAutoLayout()
         
         return img
