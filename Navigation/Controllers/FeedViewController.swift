@@ -8,7 +8,10 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    // Mark: создание обьекта Post
+    
+    
+    weak var coordinator: FeedCoordinator?
+    
     var postTitle = HeadPost(title: "Пост")
     
     private let textField: CustomTextField = {
@@ -98,7 +101,8 @@ class FeedViewController: UIViewController {
             ($0).buttonAction = { [self] in
         let detailController = PostViewController()
         detailController.titlePost = postTitle.title //передаём наш пост в виде заголовка на PostView
-        navigationController?.pushViewController(detailController, animated: false)
+        //navigationController?.pushViewController(detailController, animated: false)
+                self.coordinator?.openPostViewController()
     }
   }
 

@@ -12,6 +12,11 @@ class PhotosCollectionViewCell : UICollectionViewCell {
 
     private lazy var photoImage : UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.borderWidth = 1.5
+        image.layer.cornerRadius = 5
+        image.layer.borderColor = UIColor(hexString: "#00000").cgColor
         image.toAutoLayout()
         
         return image

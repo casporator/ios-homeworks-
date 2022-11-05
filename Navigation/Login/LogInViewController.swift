@@ -9,10 +9,10 @@ import UIKit
 
 class LoginViewController : UIViewController {
     
-    //Для класса LoginViewController сделайте свойство loginDelegate
+    weak var coordinator: AppCoordinator?
     var loginDelegate : LoginViewControllerDelegate?
     
-
+    
     // MARK: создаю скролвью
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -85,9 +85,15 @@ class LoginViewController : UIViewController {
     }()
     
     //MARK: добавляю кнопку логин
-    private lazy var loginButton = CustomButton(title: "Log In", backgroundColor: UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage()), cornerRadius: 10)
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton(title: "Log In", backgroundColor: UIColor(patternImage: UIImage(named: "blue_pixel.png") ?? UIImage()), cornerRadius: 10)
     
-
+        
+        
+        
+      return button
+    }()
+        
     // объявляю алертконтроллер (в случае неверного логина)
     let alertPassword = UIAlertController(title: "Error!", message: "You have entered an incorrect login or password", preferredStyle: .actionSheet)
   
@@ -157,25 +163,21 @@ class LoginViewController : UIViewController {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-   
-    //MARK: Функция нажатия кнопки Login
+   //MARK: Функция нажатия кнопки Login
     func addButtonActions() {
 
         loginButton.buttonAction = { [self] in
-     
-        let incomingLogin = emailTextField.text
-        let incomingPassword = passwordTextField.text
-        
+    
 #if DEBUG
-        let loginingUser = TestUserService(incomingUser: User(fullName: "test person", avatar: UIImage(named: "nonePhoto") ?? UIImage(), status: "test status text"))
+        let loginingUser = TestUserService()
 #else
-        let loginingUser = CurrentUserService(incomingUser: User(fullName: "Пипин", avatar: UIImage(named: "pipin") ?? UIImage(), status: "Мои шесть кубиков защищены слоем жира"))
+      let loginingUser = CurrentUserService()
 #endif
-        if loginDelegate?.checkLogin(controller: self, login: incomingLogin ?? "", password: incomingPassword ?? "") == true {
-            
-            let profileViewController = ProfileViewController()
-            profileViewController.user1 = loginingUser.incomingUser
-            navigationController?.pushViewController(profileViewController, animated: true)
+            let viewController = MainTabBarController()
+            if loginDelegate?.checkLogin(login: emailTextField.text ?? "", password: passwordTextField.text ?? "") == true {
+
+                self.coordinator?.pushToNavBarController(tapBarController: viewController)
+                
         } else {
             self.present(alertPassword, animated: true, completion: nil)
             self.view.applyBlurEffect()
@@ -243,5 +245,4 @@ class LoginViewController : UIViewController {
         ])
     }
 }
-
 

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    
+ 
     struct ViewModel {
         let autor: String
         let descriptionText: String
@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         let img = UIImageView()
         img.image =  UIImage(named: "pigs")
         img.contentMode = .scaleAspectFit
-        img.backgroundColor = .black
+        img.backgroundColor = UIColor(hexString: "#00000")
         img.toAutoLayout()
         
         return img
@@ -92,7 +92,7 @@ class PostTableViewCell: UITableViewCell {
         views.text = viewModel.views
         img.image = viewModel.image
     }
-    
+
     func addConstraints(){
         NSLayoutConstraint.activate([
             autor.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),

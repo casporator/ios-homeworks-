@@ -18,7 +18,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.layer.masksToBounds = true
         photo.layer.borderWidth = 3
-        photo.layer.borderColor = UIColor.white.cgColor
+        photo.layer.borderColor = UIColor(hexString: "#999999").cgColor
         photo.isUserInteractionEnabled = true //добавляю реакцию на нажатие аватарки
         
         return photo
@@ -77,9 +77,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     // функция установки данных пользователя
     func setupUserData(user : User){
-        label.text = user.fullName
-        image.image = user.avatar
-        statusLabel.text = user.status
+        label.text = user.userFullName
+        image.image = user.userAvatar
+        statusLabel.text = user.userStatus
 
     }
     
