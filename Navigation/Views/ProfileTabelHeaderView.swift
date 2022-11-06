@@ -70,6 +70,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addButtonActions()
         statusTextChanged()
         
+        
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)

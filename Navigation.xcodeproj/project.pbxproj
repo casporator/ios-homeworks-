@@ -29,7 +29,6 @@
 		BB2D2D8028EF40BF00742E1E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D2D6A28EF40BF00742E1E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB2D2D8828EF40D900742E1E /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFDEE328C9241200C4177C /* Posts.swift */; };
 		BB576B2728F5E3E5008922E8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB576B2628F5E3E5008922E8 /* SnapKit */; };
-		BB576B2A28F61D3F008922E8 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = BB576B2928F61D3F008922E8 /* iOSIntPackage */; };
 		BBAB864328B3B7D400BB951A /* ProfileTabelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864228B3B7D400BB951A /* ProfileTabelHeaderView.swift */; };
 		BBAB864728B4448100BB951A /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864628B4448100BB951A /* Struct.swift */; };
 		BBAB864A28C3630C00BB951A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB864928C3630C00BB951A /* LogInViewController.swift */; };
@@ -123,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB576B2A28F61D3F008922E8 /* iOSIntPackage in Frameworks */,
 				BB2D2D7F28EF40BF00742E1E /* StorageService.framework in Frameworks */,
 				BB576B2728F5E3E5008922E8 /* SnapKit in Frameworks */,
 				BB28D52F2902C7230049BB92 /* iOSIntPackage in Frameworks */,
@@ -298,7 +296,6 @@
 			name = Navigation;
 			packageProductDependencies = (
 				BB576B2628F5E3E5008922E8 /* SnapKit */,
-				BB576B2928F61D3F008922E8 /* iOSIntPackage */,
 				BB28D52E2902C7230049BB92 /* iOSIntPackage */,
 			);
 			productName = Navigation;
@@ -375,7 +372,6 @@
 			mainGroup = BB15976328AA704200BBA453;
 			packageReferences = (
 				BB576B2528F5E3E5008922E8 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				BB28D52D2902C7230049BB92 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = BB15976D28AA704200BBA453 /* Products */;
@@ -813,8 +809,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				branch = imagepublisher;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.3;
 			};
 		};
 		BB576B2528F5E3E5008922E8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -823,14 +819,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -845,11 +833,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB576B2528F5E3E5008922E8 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		BB576B2928F61D3F008922E8 /* iOSIntPackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB576B2828F61D3F008922E8 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
-			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

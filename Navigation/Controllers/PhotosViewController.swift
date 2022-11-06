@@ -89,7 +89,7 @@ extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDel
             return cell
         }
        // cell.setup(name: itemImageMassive[indexPath.row])
-        cell.setupImagePublisher(image:  photoCollection[indexPath.row])
+        cell.setupImagePublisher(image: photoCollection[indexPath.row])
         
       return cell
     }
