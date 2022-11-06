@@ -45,6 +45,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UITabBar.appearance().tintColor = .systemBlue
         UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().layer.borderColor = UIColor.darkGray.cgColor
+        UITabBar.appearance().layer.borderWidth = 1
+        UITabBar.appearance().layer.masksToBounds = true
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController

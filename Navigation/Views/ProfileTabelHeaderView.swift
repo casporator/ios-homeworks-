@@ -77,9 +77,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     // функция установки данных пользователя
     func setupUserData(user : User){
-        label.text = user.fullName
-        image.image = user.avatar
-        statusLabel.text = user.status
+        label.text = user.userName
+        image.image = user.userAvatar
+        statusLabel.text = user.userStatus
 
     }
     

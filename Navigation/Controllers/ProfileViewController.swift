@@ -13,8 +13,10 @@ import iOSIntPackage
 
 
 class ProfileViewController: UIViewController {
+    
+    
    
-    var user1: User = User( fullName: "Hipster Dog", avatar:  UIImage(named: "IMG_0037") ?? UIImage(), status: "У меня тоже есть чувства. Например голод")
+    var user1: User = User( userName: "Hipster Dog", userAvatar:  UIImage(named: "IMG_0037") ?? UIImage(), userStatus: "У меня тоже есть чувства. Например голод")
   
     
     private lazy var tableView: UITableView = {
@@ -32,7 +34,7 @@ class ProfileViewController: UIViewController {
     //MARK: объявляю дубликат аватара и длелаю его скрытым
     private lazy var duplicateAvatar : UIImageView = {
         let avatar = UIImageView()
-        avatar.image = user1.avatar
+        avatar.image = user1.userAvatar
         avatar.layer.cornerRadius = 60
         avatar.layer.masksToBounds = true
         avatar.layer.borderWidth = 3
@@ -215,7 +217,7 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }
         
         if section == 1 {
-            return posts.count
+            return PostModel.posts.count
         }
         return 0
     }
@@ -227,6 +229,15 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }
     }
    
+    // ручная настройка высоты ячеек
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 160
+        }
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             
@@ -241,19 +252,18 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             
             //MARK: устанавливаю фильтры по заданию
             
-            var post = posts[indexPath.row]
+            var post = PostModel.posts[indexPath.row]
                              
             ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
                 filteredImage in post.image = filteredImage
             }
           
            
-            
             let PostModel = PostTableViewCell.ViewModel(
-            autor: posts[indexPath.row].autor,
-            descriptionText: posts[indexPath.row].description,
-            likes: "Likes: \(posts[indexPath.row].likes)",
-            views: "Views: \(posts[indexPath.row].views)",
+                autor: PostModel.posts[indexPath.row].autor,
+                descriptionText: PostModel.posts[indexPath.row].description,
+                likes: "Likes: \(PostModel.posts[indexPath.row].likes)",
+                views: "Views: \(PostModel.posts[indexPath.row].views)",
             image: post.image
         )
         cell.setup(with: PostModel)
