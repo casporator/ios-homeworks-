@@ -252,13 +252,8 @@ extension ProfileViewController : UITableViewDataSource, UITableViewDelegate {
             
             //MARK: устанавливаю фильтры по заданию
             
-            var post = PostModel.posts[indexPath.row]
-                             
-            ImageProcessor().processImage(sourceImage: post.image ?? UIImage(), filter: .fade) {
-                filteredImage in post.image = filteredImage
-            }
-          
-           
+            let post = PostModel.posts[indexPath.row]
+            
             let PostModel = PostTableViewCell.ViewModel(
                 autor: PostModel.posts[indexPath.row].autor,
                 descriptionText: PostModel.posts[indexPath.row].description,

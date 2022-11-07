@@ -11,6 +11,10 @@ import iOSIntPackage // импортирую расширение iOSIntPackage
 
 class PhotosViewController: UIViewController {
  
+ 
+   // private let facade = ImagePublisherFacade()
+    var contentPhotoDataArray: [UIImage] = []
+    
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -41,10 +45,50 @@ class PhotosViewController: UIViewController {
         
         addViews()
         addConstraints()
-                
+        addFilter()
     }
       
+    func addFilter() {
+        
+        let start = CFAbsoluteTimeGetCurrent()
+        
+        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .fade, qos: .userInitiated) {filteredImages in
+            
+            for (index,item) in filteredImages.enumerated() {
+                photoCollection[index] = UIImage.init(cgImage: item!)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    
+                    let diff = CFAbsoluteTimeGetCurrent() - start
+                    print ("время наложения фильтра на все картинки: \(diff)")
+                    
+                }
+            }
+        }
+    }
     
+/*
+ 
+всего обрабатывается 26 картинок
+разные фильтры, один и тот же qos:
+    filter: .chrome, qos: .userInitiated = старт 1.9114, финиш 2.90006
+    filter: .tonal, qos: .userInitiated = старт 1.8372, финиш 2.7847
+    filter: .colorInvert, qos: .userInitiated = старт 1.87268, финиш 2.8132
+    filter: .posterize, qos: .userInitiated = старт 1.9298, финиш 2.7627
+    filter: .fade, qos: .userInitiated = старт 1.87128, финиш 2.8260
+ 
+ один и тот же фильтр, но разный qos:
+    filter: .chrome, qos: .userInitiated = старт 1.9114, финиш 2.90006
+    filter: .chrome, qos: .userInteractive = старт 1.882, финиш 2.8421
+    filter: .chrome, qos: .default = старт 1.8875, финиш 2.85869
+    filter: .chrome, qos: .utility = старт 1.9441, финиш 2.92886
+    filter: .chrome, qos: .background = старт 6.868, финиш 7.89184
+ 
+    
+ 
+
+*/
     func addViews(){
         view.addSubview(collectionView)
     }
@@ -61,7 +105,7 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoData.count
+        return photoCollection.count
        
     }
 
@@ -71,7 +115,7 @@ extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDel
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        cell.setup(name: "\(photoData[indexPath.row])")
+        cell.setupImagePublisher(image: photoCollection[indexPath.row])
        
         return cell
     }
@@ -80,14 +124,4 @@ extension PhotosViewController : UICollectionViewDataSource, UICollectionViewDel
 
         return CGSize(width: photoSizeInAlbom, height: photoSizeInAlbom)
     }
-}
-
-extension PhotosViewController {
-    func receive(images: [UIImage]) {
-        
-        photoCollection = images
-        photoInSection = images.count
-        collectionView.reloadData()
-    }
-    
 }
