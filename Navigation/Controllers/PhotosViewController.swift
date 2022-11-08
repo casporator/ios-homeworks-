@@ -52,21 +52,21 @@ class PhotosViewController: UIViewController {
         
         let start = CFAbsoluteTimeGetCurrent()
         
-        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .fade, qos: .userInitiated) {filteredImages in
+        ImageProcessor().processImagesOnThread(sourceImages: photoCollection, filter: .fade, qos: .userInitiated) {filteredImages in
             
             for (index,item) in filteredImages.enumerated() {
-                photoCollection[index] = UIImage.init(cgImage: item!)
+                photoCollection[index] = UIImage(cgImage: item!)
+            }
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
                 
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    
-                    let diff = CFAbsoluteTimeGetCurrent() - start
-                    print ("время наложения фильтра на все картинки: \(diff)")
-                    
-                }
+                let diff = CFAbsoluteTimeGetCurrent() - start
+                print ("время наложения фильтра на все картинки: \(diff)")
             }
         }
     }
+
     
 /*
  
@@ -85,10 +85,9 @@ class PhotosViewController: UIViewController {
     filter: .chrome, qos: .utility = старт 1.9441, финиш 2.92886
     filter: .chrome, qos: .background = старт 6.868, финиш 7.89184
  
-    
- 
-
 */
+    
+    
     func addViews(){
         view.addSubview(collectionView)
     }
